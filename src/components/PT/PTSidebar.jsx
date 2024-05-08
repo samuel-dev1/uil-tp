@@ -57,7 +57,7 @@ export const PTSidebar = ({ setMobileMenuOpen }) => {
       </div>
       <button
               type="button"
-              className="absolute top-0 right-3 cursor-pointer lg:hidden block text-background2" onClick={()=> setMobileMenuOpen(false)}
+              className="absolute top-5 right-5 cursor-pointer lg:hidden block text-background2" onClick={()=> setMobileMenuOpen(false)}
             >
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>

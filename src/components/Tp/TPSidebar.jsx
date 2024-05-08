@@ -38,7 +38,7 @@ export const TPSidebar = ({ setMobileMenuOpen }) => {
   ]);
 
   return (
-    <div className="sidebar">
+    <div className="sidebar w-full">
       <div className="w-full flex items-center justify-center mt-10">
         <img src="https://i.imgur.com/A5AqsH4.png" className="w-20" alt="" />
       </div>
@@ -66,7 +66,7 @@ export const TPSidebar = ({ setMobileMenuOpen }) => {
 
       <button
               type="button"
-              className="absolute top-0 right-20 cursor-pointer lg:hidden block text-background2 " onClick={()=> setMobileMenuOpen(false)}
+              className="absolute top-5 right-5 cursor-pointer lg:hidden block text-background2 " onClick={()=> setMobileMenuOpen(false)}
             >
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
