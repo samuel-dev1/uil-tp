@@ -23,7 +23,7 @@ export const routes = [
     },
 
     {
-      path: '/tp',
+      path: '/',
       component: <TPLayout />,
       standalone: true,
       children: [
