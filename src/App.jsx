@@ -1,4 +1,5 @@
 import React from "react";
+import { NotFound } from './pages'
 import { Routes, Route } from "react-router-dom";
 import { routes } from "./routes/index";
 import AppLayout from "./layout/AppLayout";
@@ -43,7 +44,7 @@ function App() {
         <div>
           <Routes>
             {renderRoutes(routes)}
-            {/* <Route path='*' element={<NotFound />} /> */}
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </div>
     </>
