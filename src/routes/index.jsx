@@ -21,7 +21,7 @@ export const routes = [
       standalone: true,
     },
     {
-      path: '/',
+      path: '/tp',
       component: <TPLayout />,
       standalone: true,
       children: [
@@ -52,7 +52,7 @@ export const routes = [
       ]
     },
     {
-      path: 'pt',
+      path: '',
       component: <PTLayout />,
       standalone: true,
       children: [
