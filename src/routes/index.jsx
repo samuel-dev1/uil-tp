@@ -15,13 +15,11 @@ import  {
 } from "../pages";
 
 export const routes = [
-    
     {
       path: '/login',
       component: <Login />,
       standalone: true,
     },
-
     {
       path: '/',
       component: <TPLayout />,
@@ -54,7 +52,7 @@ export const routes = [
       ]
     },
     {
-      path: '/pt',
+      path: 'pt',
       component: <PTLayout />,
       standalone: true,
       children: [
