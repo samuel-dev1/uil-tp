@@ -1,9 +1,15 @@
 import { AppCard } from "../Core";
+import { fetchLogin } from "../../services/login";
 
 export const AuthLogin = ()=> {
 
+  const data = {
+    Staff_id:'300',
+    Password:'admin'
+};
+
   const handleLogin = ()=> {
-    localStorage.setItem("sessionId", JSON.stringify("Reuben"));
+    fetchLogin(data);
   }
 
   return (
@@ -27,7 +33,7 @@ export const AuthLogin = ()=> {
         <input type="checkbox" className="cursor-pointer" />
         <span className="text-sm ml-2 font-bold text-black">Remember me</span>
       </div>
-      <button style={{ backgroundColor: '#29176D' }} className="text-white mt-8 py-2 px-8 rounded-2xl">
+      <button onClick={handleLogin} style={{ backgroundColor: '#29176D' }} className="text-white mt-8 py-2 px-8 rounded-2xl">
         Sign In
       </button>
     </AppCard>
