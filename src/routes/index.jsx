@@ -11,14 +11,19 @@ import  {
   PTGroupPage,
   LecturerLayout,
   LecturerDashboardPage,
-  ScoreStudentsPage
+  ScoreStudentsPage,
+  AdminLoginPage
 } from "../pages";
-
 export const routes = [
     {
       path: '/login',
       component: <Login />,
       standalone: true,
+    },
+    {
+      path:"/admin",
+      component:<AdminLoginPage />,
+      standalone:true,
     },
     {
       path: '/tp',
