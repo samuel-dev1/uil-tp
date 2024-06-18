@@ -1,21 +1,20 @@
 import { AppCard } from "../Core";
-import { fetchLogin } from "../../services/login";
+import { fetchSupervisors } from "../../services/loginLogic/fetchsupervisor";
 import { useState } from "react";
 
-export const AuthLogin = ()=> {
+export const SupervisorLogin = ()=> {
 
-const [matric, setMatric] = useState("")
+const [staff_id, setStaff_id] = useState("")
 const [password, usePassword] = useState("")
-
 const data ={
-  matric_no:matric,
+  staff_id:staff_id,
   password:password
 }
   const handleLogin = ()=> {
-    fetchLogin(data);
+    fetchSupervisors(data);
   }
   const hadleChange =(event)=>{
-    setMatric(event.target.value)
+setStaff_id(event.target.value)
   }
   const handleChange2 =(event)=>{
     usePassword(event.target.value)
@@ -26,9 +25,9 @@ const data ={
         <img src="https://i.imgur.com/BuFYzum.png" alt="unilorin-logo" className="w-full h-full" />
       </div>
       <h3 className="text-xl text-black font-semibold">Faculty Of Education</h3>
-      <h3 className="text-2xl my-3 text-black font-bold">Sign In</h3>
+      <h3 className="text-2xl my-3 text-black font-bold">Sign In As Supervisor</h3>
       <input
-      value={matric}
+      value={staff_id}
       onChange={hadleChange}
         className="bg-background1 my-3 md:w-3/5 w-4/5 p-3 rounded-3xl italic"
         placeholder="Matric No"

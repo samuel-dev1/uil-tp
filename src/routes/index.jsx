@@ -12,8 +12,10 @@ import  {
   LecturerLayout,
   LecturerDashboardPage,
   ScoreStudentsPage,
-  AdminLoginPage
+  AdminLoginPage,
+  Supervisor
 } from "../pages";
+
 export const routes = [
     {
       path: '/login',
@@ -23,6 +25,11 @@ export const routes = [
     {
       path:"/admin",
       component:<AdminLoginPage />,
+      standalone:true,
+    },
+    {
+      path:"/supervisor",
+      component:<Supervisor />,
       standalone:true,
     },
     {
