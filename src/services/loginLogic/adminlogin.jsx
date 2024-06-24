@@ -1,8 +1,9 @@
-import axios from 'axios';
 
-export const fetchLogin = async (values) => {
-  axios.post('https://uil-tp.com.ng/login/login-students', {
-    matric_no:values.matric_no,
+
+import axios from 'axios';
+export const fetchAdmin = async (values) => {
+  axios.post('https://uil-tp.com.ng/login/admin', {
+    staff_id:values.staff_id,
     password:values.password
 }, {
     headers: {
@@ -10,8 +11,7 @@ export const fetchLogin = async (values) => {
     }
 })
 .then(response => {
-    console.log(response);
-    // alert(response.data.message)
+    alert(response.data.message)
 })
 .catch(error => {
     console.error('There was an error!', error);
