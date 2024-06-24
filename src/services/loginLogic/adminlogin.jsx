@@ -1,8 +1,9 @@
 
 
 import axios from 'axios';
+
 export const fetchAdmin = async (values) => {
-  axios.post('https://uil-tp.com.ng/login/admin', {
+  axios.post('http://localhost:3000/login/admin', {
     staff_id:values.staff_id,
     password:values.password
 }, {
@@ -12,6 +13,7 @@ export const fetchAdmin = async (values) => {
 })
 .then(response => {
     alert(response.data.message)
+    
 })
 .catch(error => {
     console.error('There was an error!', error);

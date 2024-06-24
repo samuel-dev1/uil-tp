@@ -7,7 +7,7 @@ token espires in 2hrs except for admin which expires in 4hrs affter login in els
 
 error will contain messages and data
 use messages for user notification where applicable
-use data to display any data from needed to be fetched....
+use data to display any data form needed to be fetched....
 
 
  In uploading of students and supervisors

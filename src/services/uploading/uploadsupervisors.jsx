@@ -17,7 +17,7 @@ export const fetchUploadsupervisor = async (values) => {
 })
 .then(response => {
     alert(response.data.message)
-})
+})  
 .catch(error => {
     console.error('There was an error!', error);
     alert(error.response.data.message)
