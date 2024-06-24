@@ -1,0 +1,19 @@
+
+please note::
+
+authentication token is bearer token
+token espires in 2hrs except for admin which expires in 4hrs affter login in else you need to log in again..
+
+
+error will contain messages and data
+use messages for user notification where applicable
+use data to display any data from needed to be fetched....
+
+
+ In uploading of students and supervisors
+
+ A. send a webview to the specific url uploading only available on server 
+ B. its contains all the , school, students, supervisors.
+
+
+

@@ -11,7 +11,9 @@ import  {
   PTGroupPage,
   LecturerLayout,
   LecturerDashboardPage,
-  ScoreStudentsPage
+  ScoreStudentsPage,
+  AdminLoginPage,
+  Supervisor
 } from "../pages";
 
 export const routes = [
@@ -19,6 +21,16 @@ export const routes = [
       path: '/login',
       component: <Login />,
       standalone: true,
+    },
+    {
+      path:"/admin",
+      component:<AdminLoginPage />,
+      standalone:true,
+    },
+    {
+      path:"/supervisor",
+      component:<Supervisor />,
+      standalone:true,
     },
     {
       path: '/tp',
