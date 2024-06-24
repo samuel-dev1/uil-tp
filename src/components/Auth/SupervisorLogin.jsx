@@ -1,9 +1,10 @@
 import { AppCard } from "../Core";
 import { fetchSupervisors } from "../../services/loginLogic/fetchsupervisor";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const SupervisorLogin = ()=> {
-
+  const navigate = useNavigate();
 const [staff_id, setStaff_id] = useState("")
 const [password, usePassword] = useState("")
 const data ={
@@ -11,7 +12,7 @@ const data ={
   password:password
 }
   const handleLogin = ()=> {
-    fetchSupervisors(data);
+    fetchSupervisors(data, navigate);
   }
   const hadleChange =(event)=>{
 setStaff_id(event.target.value)

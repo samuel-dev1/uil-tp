@@ -1,7 +1,7 @@
 
 
 import axios from 'axios';
-export const fetchSupervisors = async (values) => {
+export const fetchSupervisors = async (values, navigate) => {
   axios.post('https://uil-tp.com.ng/login/supervisor-login', {
     staff_id:values.staff_id,
     password:values.password
@@ -11,7 +11,12 @@ export const fetchSupervisors = async (values) => {
     }
 })
 .then(response => {
-    alert(response.data.message)
+    console.log(response);
+    localStorage.setItem(
+        "token",
+        JSON.stringify(response.data.token),
+      );
+   navigate('/lecturer');
 })
 .catch(error => {
     console.error('There was an error!', error);

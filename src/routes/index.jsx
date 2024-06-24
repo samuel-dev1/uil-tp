@@ -64,7 +64,7 @@ export const routes = [
       ]
     },
     {
-      path: '',
+      path: '/',
       component: <PTLayout />,
       standalone: true,
       children: [
