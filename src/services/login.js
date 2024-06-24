@@ -1,21 +1,16 @@
-// import { request } from '../utils/index'
-import axios from 'axios';
+import { request } from '../utils/index'
+
 
 export const fetchLogin = async (values) => {
-  axios.post('https://uil-tp.com.ng/auth/supervisor-login', {
-    // Your data here
-    values,
-}, {
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer YOUR_TOKEN' // if needed
-    }
-})
-.then(response => {
-    console.log(response.data);
-})
-.catch(error => {
-    console.error('There was an error!', error);
-});
-  };
+    try {
+      const res = await request.post("/auth/supervisor-login", values);
+      localStorage.setItem(
+        "sessionId",
+        JSON.stringify(res.data.cookies.session_id),
+      );
   
+      console.log(res);
+    } catch (e) {
+        console.log(e);
+    }
+  };
