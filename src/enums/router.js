@@ -17,7 +17,9 @@ export const RouterNames = {
     LecturerGroup: 'lecturer-group',
     StudentsDashboard: 'students-dashboard',
     ScoreStudents: 'score-students',
-    NotFound: 'not-found'
+    NotFound: 'not-found',
+    StudentManagement: 'student-management',
+    LecturerManagement: 'lecturer-management'
   };
   
   
