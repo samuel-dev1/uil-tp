@@ -10,8 +10,7 @@ export const fetchLogin = async (values) => {
     }
 })
 .then(response => {
-    console.log(response);
-    // alert(response.data.message)
+    alert(response.data.message)
 })
 .catch(error => {
     console.error('There was an error!', error);

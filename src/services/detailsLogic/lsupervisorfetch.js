@@ -4,9 +4,12 @@ export const fetchSupervisors = async (values) => {
   axios.post('https://uil-tp.com.ng/login/supervisor-login', {
     staff_id:values.staff_id,
     password:values.password
-}, {
+},
+
+{
     headers: {
         'Content-Type': 'application/json',
+        "token":values.token
     }
 })
 .then(response => {
@@ -19,4 +22,3 @@ export const fetchSupervisors = async (values) => {
   };
   
 
-  
