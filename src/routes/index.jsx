@@ -2,6 +2,10 @@ import  {
   Login,
   TPDashboardPage,
   TPLayout,
+  AdminLayout,
+  AdminDashboardPage,
+  StudentManagementPage,
+  LecturerManagementPage,
   TPProfilePage,
   TPSelectSchoolPage,
   TPPostingLetterPage,
@@ -118,6 +122,25 @@ export const routes = [
         {
           path: 'lecturer-password',
           component: <ChangePasswordPage />
+        },
+      ]
+    },
+    {
+      path: '/admin',
+      component: <AdminLayout />,
+      standalone: true,
+      children: [
+        {
+          path: '',
+          component: <AdminDashboardPage />
+        },
+        {
+          path: 'student-management',
+          component: <StudentManagementPage />
+        },
+        {
+          path: 'lecturer-management',
+          component: <LecturerManagementPage />
         },
       ]
     },
