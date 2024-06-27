@@ -17,7 +17,7 @@ export const LecturerDashboard = () => {
       <div className="mt-8 lg:w-4/5 w-full">
         <div className="flex flex-col justify-center items-center mb-16">
           <img src="https://i.imgur.com/3YzCjWm.png" alt="avatar" className="mb-4" />
-          <h1 className="text-colour1 text-3xl font-bold">James Cook</h1>
+          <h1 className="text-colour1 text-3xl font-bold">Name here</h1>
         </div>
 
         <h1 className="lg:text-xl text-lg mb-8">
