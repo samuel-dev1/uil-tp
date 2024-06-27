@@ -1,24 +1,33 @@
 import { AppCard } from "../Core";
 import { fetchAdmin } from "../../services/loginLogic/adminlogin";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FormSpinner } from "../FormSpinner";
 
 export const AdminLogin= ()=> {
-
-const [staff_id, useStaff_id] = useState("")
-const [password, usePassword] = useState("")
+const [staff_id, setStaff_id] = useState("");
+const [password, setPassword] = useState("");
+const [onSubmit, setOnSubmit] = useState(false);
+const navigate = useNavigate();
 
 const data ={
   staff_id:staff_id,
   password:password
 }
   const handleLogin = ()=> {
-    fetchAdmin(data);
+    if(staff_id === "" || password === ""){
+      return;
+    }
+    setOnSubmit(true);
+    fetchAdmin(data, navigate, (()=> {
+      setOnSubmit(false);
+    }));
   }
   const hadleChange =(event)=>{
-    useStaff_id(event.target.value)
+    setStaff_id(event.target.value)
   }
   const handleChange2 =(event)=>{
-    usePassword(event.target.value)
+    setPassword(event.target.value)
   }
   return (
     <AppCard>
@@ -47,7 +56,7 @@ const data ={
       </div>
       <button
       onClick={handleLogin} style={{ backgroundColor: '#29176D' }} className="text-white mt-8 py-2 px-8 rounded-2xl">
-        Sign In
+       {onSubmit? <FormSpinner />: "Sign In"}
       </button>
     </AppCard>
   );

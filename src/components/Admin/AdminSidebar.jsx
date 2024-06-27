@@ -9,7 +9,7 @@ export const AdminSidebar = ({setMobileMenuOpen}) => {
     {
       title: 'Dashboard',
       icon: 'https://i.imgur.com/668XTgM.png',
-      link: RouterNames.LecturerDashboard
+      link: RouterNames.AdminDashboardPage
     },
     {
       title: 'Students Management',
