@@ -27,7 +27,7 @@ export const routes = [
       standalone: true,
     },
     {
-      path:"/admin",
+      path:"/adminLogin",
       component:<AdminLoginPage />,
       standalone:true,
     },

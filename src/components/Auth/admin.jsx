@@ -2,7 +2,6 @@ import { AppCard } from "../Core";
 import { fetchAdmin } from "../../services/loginLogic/adminlogin";
 import { useState } from "react";
 
-
 export const AdminLogin= ()=> {
 
 const [staff_id, useStaff_id] = useState("")
