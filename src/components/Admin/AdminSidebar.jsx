@@ -24,12 +24,12 @@ export const AdminSidebar = ({setMobileMenuOpen}) => {
     {
       title: 'School Management',
       icon: 'https://i.imgur.com/HisInPr.png',
-      link: RouterNames.LecturerGroup
+      link: RouterNames.SchoolManagement
     },
     {
       title: 'Session Management',
       icon: 'https://i.imgur.com/gzoogm5.png',
-      link: RouterNames.LecturerPassword
+      link: RouterNames.SessionManagement
     }
   ]);
 

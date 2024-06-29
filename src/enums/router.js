@@ -19,7 +19,10 @@ export const RouterNames = {
     ScoreStudents: 'score-students',
     NotFound: 'not-found',
     StudentManagement: 'student-management',
-    LecturerManagement: 'lecturer-management'
+    LecturerManagement: 'lecturer-management',
+    SchoolManagement: 'school-management',
+    SessionManagement: 'session-management',
+    AdminDashboardPage: ''
   };
   
   
