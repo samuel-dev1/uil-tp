@@ -1,3 +1,5 @@
+import { AdminLoginPage } from "../pages";
+
 export const RouterNames = {
     Login: 'auth-login',
     AuthVerify: 'auth-verify',
@@ -22,6 +24,7 @@ export const RouterNames = {
     LecturerManagement: 'lecturer-management',
     SchoolManagement: 'school-management',
     SessionManagement: 'session-management',
+    AdminUploadPage: 'admin-upload',
     AdminDashboardPage: ''
   };
   

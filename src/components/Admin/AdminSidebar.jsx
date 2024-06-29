@@ -30,6 +30,11 @@ export const AdminSidebar = ({setMobileMenuOpen}) => {
       title: 'Session Management',
       icon: 'https://i.imgur.com/gzoogm5.png',
       link: RouterNames.SessionManagement
+    },
+    {
+      title: 'Upload',
+      icon: 'https://i.imgur.com/gzoogm5.png',
+      link: RouterNames.AdminUploadPage
     }
   ]);
 
