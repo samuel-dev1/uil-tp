@@ -8,6 +8,7 @@ import  {
   SchoolManagement,
   SessionManagement,
   LecturerManagementPage,
+  LecturerProfilePage,
   AdminUploadPage,
   TPProfilePage,
   TPSelectSchoolPage,
@@ -112,7 +113,7 @@ export const routes = [
         },
         {
           path: 'lecturer-profile',
-          component: <TPProfilePage />
+          component: <LecturerProfilePage />
         },
         {
           path: 'score-students',

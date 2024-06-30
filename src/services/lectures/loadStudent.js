@@ -1,10 +1,11 @@
+
 import axios from "axios";
 
- export const fetchLecture = async (values) => {
+export const stdUnderLecture= async (values) => {
     try {
-      const response = await axios.get('https://uil-tp.com.ng/get-lecture', {
+      const response = await axios.get('https://uil-tp.com.ng/show-ob-students', {
         params: {
-          staff_id:values.staff_id,
+          staff_id:values.supervisor_id,
         },
       });
       setMessage(response.data.message);
@@ -14,4 +15,8 @@ import axios from "axios";
      console.log(err.data.message)
     }
   };
+b 
+
+
+
 

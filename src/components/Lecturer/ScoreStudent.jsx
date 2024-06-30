@@ -1,3 +1,5 @@
+import { Input } from "../Input";
+
 export const ScoreStudents = () => {
   // Define list data as a reactive reference
   const lecturersList = [
@@ -36,7 +38,10 @@ export const ScoreStudents = () => {
                 <td className="p-4">{id}</td>
                 <td className="p-4">{name}</td>
                 <td className="p-4">{dept}</td>
-                <td className="p-4">{number}</td>
+                <td className="p-4">{'19/25pj048'}</td>
+                <Input placehold={"input students score"}
+                
+                />
               </tr>
             ))
           ) : (
@@ -74,7 +79,9 @@ export const ScoreStudents = () => {
                 <td className="p-4">{id}</td>
                 <td className="p-4">{name}</td>
                 <td className="p-4">{dept}</td>
-                <td className="p-4">{number}</td>
+                <td className="p-4">{'19/25pj048'}</td>
+                <Input placehold={"input students score"}
+                />
               </tr>
             ))
           ) : (
