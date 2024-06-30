@@ -9,6 +9,7 @@ const studentsList = [
   { id: 2, name: 'Samson Siasia', dept: 'Art Education', number: '0703675378' },
 ];
 
+
 export const LecturerDashboard = () => {
   return (
     <div className="h-full w-full p-10">
