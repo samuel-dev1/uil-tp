@@ -3,7 +3,6 @@ import { fetchLogin } from "../../services/login";
 import { useState } from "react";
 
 export const AuthLogin = ()=> {
-
 const [matric, setMatric] = useState("")
 const [password, usePassword] = useState("")
 

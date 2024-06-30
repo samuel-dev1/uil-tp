@@ -9,7 +9,7 @@ export const AdminSidebar = ({setMobileMenuOpen}) => {
     {
       title: 'Dashboard',
       icon: 'https://i.imgur.com/668XTgM.png',
-      link: RouterNames.LecturerDashboard
+      link: RouterNames.AdminDashboardPage
     },
     {
       title: 'Students Management',
@@ -24,12 +24,17 @@ export const AdminSidebar = ({setMobileMenuOpen}) => {
     {
       title: 'School Management',
       icon: 'https://i.imgur.com/HisInPr.png',
-      link: RouterNames.LecturerGroup
+      link: RouterNames.SchoolManagement
     },
     {
       title: 'Session Management',
       icon: 'https://i.imgur.com/gzoogm5.png',
-      link: RouterNames.LecturerPassword
+      link: RouterNames.SessionManagement
+    },
+    {
+      title: 'Upload',
+      icon: 'https://i.imgur.com/gzoogm5.png',
+      link: RouterNames.AdminUploadPage
     }
   ]);
 

@@ -7,7 +7,7 @@ export const PTAssignStd = () => {
     <h1 className="text-xl text-black font-semibold mt-10">Click on the button below to assign students to lecturers randomly</h1>
     <h1 className="text-xl text-black font-semibold">for peer teaching assignment</h1>
 <div className="mt-10">
-        <Button label="Download" />
+        <Button label="Assign" />
     </div>
     </div>
   )

@@ -5,8 +5,11 @@ import  {
   AdminLayout,
   AdminDashboardPage,
   StudentManagementPage,
+  SchoolManagement,
+  SessionManagement,
   LecturerManagementPage,
   LecturerProfilePage,
+  AdminUploadPage,
   TPProfilePage,
   TPSelectSchoolPage,
   TPPostingLetterPage,
@@ -142,6 +145,18 @@ export const routes = [
         {
           path: 'lecturer-management',
           component: <LecturerManagementPage />
+        },
+        {
+          path: 'school-management',
+          component: <SchoolManagement />
+        },
+        {
+          path: 'session-management',
+          component: <SessionManagement />
+        },
+        {
+          path: 'admin-upload',
+          component: <AdminUploadPage />
         },
       ]
     },

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const SupervisorLogin = ()=> {
   const navigate = useNavigate();
 const [staff_id, setStaff_id] = useState("")
-const [password, usePassword] = useState("")
+const [password, setPassword] = useState("")
 const data ={
   staff_id:staff_id,
   password:password
@@ -18,7 +18,7 @@ const data ={
 setStaff_id(event.target.value)
   }
   const handleChange2 =(event)=>{
-    usePassword(event.target.value)
+    setPassword(event.target.value)
   }
   return (
     <AppCard>
