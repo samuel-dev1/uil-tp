@@ -3,6 +3,7 @@ import { SchoolList, AddSchool } from "../../components"
 
 export const SchoolManagement = ()=> {
     const [ addSchool, setAddSchool] = useState(false);
+    const [deletschool, setDeleteschool] = useState(false)
 
     if(addSchool){
        return(
@@ -10,6 +11,13 @@ export const SchoolManagement = ()=> {
         <AddSchool />
         </>
        )
+    }
+    if(deletschool){
+        return(
+            <>
+            
+            </>
+        )
     }
     return(
         <>

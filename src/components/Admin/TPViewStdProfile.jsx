@@ -1,4 +1,37 @@
+import { useState } from 'react';
+
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+
+import { Button } from '../Button';
+import { Input } from '../Input';
+
+
+async function getAstudent(search){
+  const token = JSON.parse(localStorage.getItem('token'));
+  try{
+    const response = await fetch("https://uil-tp.com.ng/admin/searc-for-std",{
+      body:JSON.stringify({
+        serach:search
+      }),
+      headers:{
+        "Content-type":'application/json',
+        "Authorization":`Bearer ${token}`
+      }
+    });
+    location.reload =false
+    const data  = response.json()
+    return data
+  }
+  catch(error){
+    return error
+  }
+}
+
+
+
+
+
+
 
 const studentsList = [
   { id: 1, name: 'Reuben Chukwuka', dept: 'Educational Technology', number: '08036753367' },
@@ -7,25 +40,42 @@ const studentsList = [
 ];
 
 export const TPViewStdProfile = () => {
-  const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    console.log(string, results)
-  }
 
-  const handleOnHover = (result) => {
-    // the item hovered
-    console.log(result)
-  }
+  const [search, setSearch] =useState(null)
 
-  const handleOnSelect = (item) => {
-    // the item selected
-    console.log(item)
-  }
 
-  const handleOnFocus = () => {
-    console.log('Focused')
+
+function handleHoldsearch(event){
+  setSearch(event.target.value)
+}
+
+const handleSearch = ()=>{
+  {
+  const searchHandle = getAstudent(search)
+  console.log(searchHandle)
   }
+}
+
+
+  // const handleOnSearch = (string, results) => {
+  //   // onSearch will have as the first callback parameter
+  //   // the string searched and for the second the results.
+  //   console.log(string, results)
+  // }
+
+  // const handleOnHover = (result) => {
+  //   // the item hovered
+  //   console.log(result)
+  // }
+
+  // const handleOnSelect = (item) => {
+  //   // the item selected
+  //   console.log(item)
+  // }
+
+  // const handleOnFocus = () => {
+  //   console.log('Focused')
+  // }
 
   const formatResult = (item) => {
     return (
@@ -45,22 +95,16 @@ export const TPViewStdProfile = () => {
 <form className="flex items-center w-full">   
     <label className="sr-only">Search</label>
     <div className="relative w-full">
-    <ReactSearchAutocomplete
-            items={studentsList}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-            formatResult={formatResult}
-            placeholder='Search for student'
-            styling={
-                {
-                  backgroundColor: "#29176D",
-                  color: "white"
-                }
-              }
-          />
+           <Input 
+   value={search}
+   handleInputChange={handleHoldsearch}
+   placehold={"search fro student with matric"}
+   label={"search for students"}
+   />
+   <Button
+handleSubmit={handleSearch}
+   label={"search"}
+   />
     </div>
 </form>
     </div>
