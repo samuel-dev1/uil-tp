@@ -1,10 +1,16 @@
+
+
+
+// this ui is pending to be review later 
+
+
 import axios from "axios";
 import { useState } from "react";
 import { Input, Button } from "../../components";
 
 const token = JSON.parse(localStorage.getItem("token"));
 
-async function AddNewSchool(schooldetails) {
+async function DeleteSchoolup(schooldetails) {
   try {
     const response = await axios.post(
       "https://uil-tp.com.ng/admin/admin-add-school",
@@ -26,7 +32,7 @@ async function AddNewSchool(schooldetails) {
   }
 }
 
-export const AddSchool = () => {
+export const DeleteSchool = () => {
   const [schName, setSchName] = useState("");
   const [address, setAddress] = useState("");
   const [Allocation, setAllocation] = useState("");
@@ -37,7 +43,7 @@ export const AddSchool = () => {
       allocation: Allocation,
     };
     try {
-      const response = await AddNewSchool(schooldetails);
+      const response = await Dele(schooldetails);
       alert(response.message);
 
     } catch (error) {
