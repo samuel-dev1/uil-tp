@@ -15,7 +15,11 @@ try{
       "Content-Type":"application/json",
       "Authorization":`Bearer ${token}`,
     },
-    body:JSON.stringify({groupsize}),
+    body:JSON.stringify(
+      {
+      groupSize:groupsize
+      }
+      ),
   });
   if(!response.ok){
     console.log(response.json())
@@ -32,14 +36,20 @@ catch(error){
 }
 
 }
-
-
 export const PTAssignStd = () => {
   const [number, changenumber] = useState(null)
 
   const handleChange =(event)=>{
     changenumber(event.target.value)
   }
+
+  const handleSubmit=()=>{
+    const assign = assignOberstiongroup(number)
+    console.log(assign)
+  }
+
+
+
   return (
     <div className="h-full w-full px-10 py-5">
         <h1 className="text-xl text-background2 font-semibold">Assign Students to Lecturers</h1>
@@ -50,7 +60,7 @@ export const PTAssignStd = () => {
     handleInputChange={handleChange}
      placehold={"input the number to be group"} />
 <div className="mt-10">
-        <Button handleSubmit={()=>assignOberstiongroup(number)} label="Assign" />
+        <Button handleSubmit={handleSubmit} label="Assign" />
     </div>
     </div>
   )

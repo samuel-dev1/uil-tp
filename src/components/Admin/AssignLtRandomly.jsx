@@ -31,8 +31,6 @@ console.log(error)
 
 }
 
-
-
 async function AsignsuperObSchol(){
   const url ="https://uil-tp.com.ng/smart/assign-observation-lecturer";
   try{
@@ -61,8 +59,6 @@ console.log(error)
   }
 
 }
-
-
 
 export const AssignLtRandomly = () => {
 
