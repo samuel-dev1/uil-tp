@@ -2,114 +2,61 @@ import axios from 'axios';
 import Select from 'react-select';
 import { useEffect, useState } from 'react';
 
-// Function to fetch students
-export const fetchObstd = async () => {
+// Function to fetch data
+const fetchData = async (url) => {
   const token = JSON.parse(localStorage.getItem('token'));
 
   try {
-    const response = await axios.get('https://uil-tp.com.ng/admin/get-studenst', {
+    const response = await axios.get(url, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       },
     });
-    return response.data; // Ensure this is the correct data you need
+    return response.data; // Ensure this is the correct data structure
   } catch (error) {
-    console.log(error);
+    console.error('Error fetching data:', error);
     return null;
   }
 };
-
-
-
-export const fetchTpstd = async () => {
-  const token = JSON.parse(localStorage.getItem('token'));
-
-  try {
-    const response = await axios.get('https://uil-tp.com.ng/admin/get-studensttp', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    return response.data; // Ensure this is the correct data you need
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
-
-export const fetchLET = async () => {
-  const token = JSON.parse(localStorage.getItem('token'));
-
-  try {
-    const response = await axios.get('https://uil-tp.com.ng/admin/get-studenstlect', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    return response.data; // Ensure this is the correct data you need
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
-
-
-
-
 
 const locationOptions = [
-  { value: '2023/2024 label', label: '2023/2024' },
+  { value: '2023/2024', label: '2023/2024' },
   { value: '2024/2025', label: '2024/2025' },
-  { value: '2024/2025', label: '2024/2025' }
+  { value: '2025/2026', label: '2025/2026' }
 ];
 
 export const AdminDashboard = () => {
-  const [noObstd, setNObstd] = useState(null);
-  const [noOftp, setNotp] = useState(null)
-  const [noLect, Setlect]= useState(null)
-  const handlefect = async () => {
-    const data = await fetchObstd();
-    if (data.data.count) {
-      setNObstd(data.data.count); // Adjust according to your actual data structure
+  const [noObstd, setNoObstd] = useState(null);
+  const [noOftp, setNoOftp] = useState(null);
+  const [noLect, setNoLect] = useState(null);
+
+  const fetchObstd = async () => {
+    const data = await fetchData('https://uil-tp.com.ng/admin/get-studenst');
+    if (data?.data?.count) {
+      setNoObstd(data.data.count); // Adjust according to your actual data structure
     }
   };
 
-
-
-  const handlefect3 = async () => {
-    const data = await fetchLET();
-    if (data.data.count) {
-      Setlect(data.data.count); // Adjust according to your actual data structure
+  const fetchTpstd = async () => {
+    const data = await fetchData('https://uil-tp.com.ng/admin/get-studensttp');
+    if (data?.data?.count) {
+      setNoOftp(data?.data?.count); // Adjust according to your actual data structure
     }
   };
 
-
-  const handlefect2 = async () => {
-    const data = await fetchTpstd();
-    if (data.data.count) {
-      setNotp(data.data.count); // Adjust according to your actual data structure
+  const fetchLET = async () => {
+    const data = await fetchData('https://uil-tp.com.ng/admin/get-studenstlect');
+    if (data?.data?.count) {
+      setNoLect(data?.data?.count); // Adjust according to your actual data structure
     }
   };
 
-
   useEffect(() => {
-    handlefect3();
-  }, []); 
-
-
-  useEffect(() => {
-    handlefect2();
-  }, []); 
-
-
-
-  useEffect(() => {
-    handlefect();
-  }, []); // Call `handlefect` on component mount
-
+    fetchLET();
+    fetchTpstd();
+    fetchObstd();
+  }, []); // Call fetch functions on component mount
 
   const customStyles = {
     control: (base, state) => ({
