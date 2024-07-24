@@ -72,8 +72,8 @@ export const SchoolList = ({ setAddSchool }) => {
       <div className="h-full w-11/12 overflow-scroll mb-12">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
-            <tr className="grid grid-cols-5 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
-              {['S/N', 'School', 'Address', 'Allocation/Space'].map((head) => (
+            <tr className="grid grid-cols-6 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
+              {['S/N', 'School', 'Address', 'Allocation/Space',"No of student", 'Actions'].map((head) => (
                 <th key={head} className="p-4 tracking-widest w-full">
                   <div className="font-medium tracking-widest whitespace-nowrap text-sm flex text-background2 font-semibold">
                     {head}
@@ -84,21 +84,25 @@ export const SchoolList = ({ setAddSchool }) => {
           </thead>
           <tbody style={{ backgroundColor: "#f5f6fa" }}>
             {schools.length > 0 ? (
-              schools.map(({ id, name, address, capacity, noStd }) => (
-                <tr key={id} className="grid grid-cols-5 border-b border-blue-gray-50">
+              schools.map(({ id, name, address, capacity, tp_count }) => (
+                <tr key={id} className="grid grid-cols-6 border-b border-blue-gray-50">
                   <td className="p-4">{id}</td>
                   <td className="p-4">{name}</td>
                   <td className="p-4">{address}</td>
                   <td className="p-4">{capacity}</td>
-                  <td className="p-4">{noStd}</td>
+                  <td className="p-4">{tp_count}</td>
+                  <td className="p-4 flex space-x-2">
+                    <button className="py-1 px-2 bg-blue-500 text-white rounded" onClick={() => handleUpdate(id)}>Update</button>
+                    <button className="py-1 px-2 bg-red-500 text-white rounded" onClick={() => handleDelete(id)}>Delete</button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr style={{ backgroundColor: '#f5f6fa' }} className="flex flex-col flex-1 justify-center py-32 text-center">
-                <td colSpan="5" className="flex justify-center mb-8">
+                <td colSpan="6" className="flex justify-center mb-8">
                   <img src="https://i.imgur.com/VQEIj2b.png" alt="icon" />
                 </td>
-                <td colSpan="5" className="capitalize text-black font-normal text-sm">
+                <td colSpan="6" className="capitalize text-black font-normal text-sm">
                   School list is empty. Add a School.
                 </td>
               </tr>
@@ -108,4 +112,15 @@ export const SchoolList = ({ setAddSchool }) => {
       </div>
     </div>
   );
+};
+
+// Example handleUpdate and handleDelete functions
+const handleUpdate = (id) => {
+  console.log(`Update school with id ${id}`);
+  // Implement your update logic here
+};
+
+const handleDelete = (id) => {
+  console.log(`Delete school with id ${id}`);
+  // Implement your delete logic here
 };

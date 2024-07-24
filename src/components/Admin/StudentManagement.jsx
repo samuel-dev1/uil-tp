@@ -1,8 +1,15 @@
-import { useState } from 'react'
+import { Checkbox } from '@material-tailwind/react';
+import { useEffect, useState } from 'react'
 import { TeachingPracticeselect, PeerTeachingselect } from '../../components'
 
 export const StudentManagement = () => {
   const [studentSelectTP, setStudentSelectTP] = useState(null);
+
+   const [close, setClose] = useState(false)
+
+  function handleSetClose (){
+    setClose(!close)
+  }
 
   if(studentSelectTP){
     return(
@@ -30,7 +37,14 @@ export const StudentManagement = () => {
             <div onClick={()=> setStudentSelectTP(false)} className='bg-background1 h-32 rounded-lg p-4 hover:bg-background2 hover:text-white cursor-pointer'>
             <h2 className='ml-2 mb-4 font-semibold'>Peer Teaching</h2>
             </div>
+           
             </div>
+            <div className='w-half flex justify-baseline'>
+            <h6 className='ml-4 mb-6 font-semibold'>close/open student registration</h6>
+
+            <Checkbox onClick={handleSetClose} checked={close} color='darkblue'/>
+            </div>
+            <p>{close?"open":"close"}</p>
         </div>    
         </div>
       </div>

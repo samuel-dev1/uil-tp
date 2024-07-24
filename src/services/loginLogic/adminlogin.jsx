@@ -1,28 +1,30 @@
-
 import axios from 'axios';
 
 export const fetchAdmin = async (values, navigate, callback) => {
-  axios.post('https://uil-tp.com.ng/login/admin', {
-    staff_id:values.staff_id,
-    password:values.password
-}, {
-    headers: {
+  try {
+    const response = await axios.post('https://uil-tp.com.ng/login/admin', {
+      staff_id: values.staff_id,
+      password: values.password
+    }, {
+      headers: {
         'Content-Type': 'application/json',
-    }
-})
-.then(response => {
-    alert(response.data.message)
-    localStorage.setItem(
-        "token",
-        JSON.stringify(response.data.token),
-      );
+      }
+    });
+
+   
+    
+    localStorage.setItem("token", JSON.stringify(response.data.token));
+    localStorage.setItem("user", JSON.stringify(response.data.user));
+
+
     navigate('/admin');
+    alert(response.data.message);
     callback();
-})
-.catch(error => {
+  } catch (error) {
     console.error('There was an error!', error);
-    alert(error.response.data.message)
+    alert(error?.response?.data?.message || 'An error occurred');
     callback();
-});
-  };
+  }
+};
+
   

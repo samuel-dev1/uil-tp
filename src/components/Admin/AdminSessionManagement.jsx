@@ -7,6 +7,28 @@ const locationOptions = [
   { value: '2024/2025', label: '2024/2025' },
   { value: '2024/2025', label: '2024/2025' }
 ]
+async function handleOpenClose(){
+  const token = JSON.parse(localStorage.getItem('token'));
+try{
+const response = await fetch('/start-session',{
+method:"POST",
+headers:{
+  'Content-Type':'application/json',
+  'Authorization': `Bearer ${token}`
+},
+body:JSON.stringify({ssession}),
+});
+const result = await response.json();
+if(response.ok){
+console.log(response)
+}
+
+}
+catch(e){
+console.log(e)
+}
+}
+
 export const AdminSessionManagement = () => {
 
     const customStyles = {
@@ -24,6 +46,7 @@ export const AdminSessionManagement = () => {
     
         // Validate the answer
         if (answer === "yes") {
+          handleOpenClose()
             return;
         } else if (answer === "no") {
             return;

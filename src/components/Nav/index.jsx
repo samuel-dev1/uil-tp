@@ -1,5 +1,7 @@
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
+const user= JSON.parse(localStorage.getItem('user'));
+
 export const Nav = ({setMobileMenuOpen}) => {
   return (
     <div className="bg-background2 h-24 w-full flex px-8 items-center justify-between">
@@ -14,8 +16,8 @@ export const Nav = ({setMobileMenuOpen}) => {
 
       <div className="flex items-center">
         <div className="mx-4">
-          <h1 className="text-white text-xl">James Cook</h1>
-          <p className="text-white text-xs">Student id: 19/2536782</p>
+          <h1 className="text-white text-xl">{user?.fullname?user.fullname:"update your profile"}</h1>
+          <p className="text-white text-xs">{user?.staff_number?"Staff Number ":"Matric Number"}{user.staff_number}</p>
         </div>
       </div>
     </div>
