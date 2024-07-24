@@ -30,7 +30,6 @@ export const AdminDashboard = () => {
   const [noObstd, setNoObstd] = useState(null);
   const [noOftp, setNoOftp] = useState(null);
   const [noLect, setNoLect] = useState(null);
-  const [noOfsch, setSchool] = useState(null)
 
   const fetchObstd = async () => {
     const data = await fetchData('https://uil-tp.com.ng/admin/get-studenst');
@@ -42,14 +41,14 @@ export const AdminDashboard = () => {
   const fetchTpstd = async () => {
     const data = await fetchData('https://uil-tp.com.ng/admin/get-studensttp');
     if (data?.data?.count) {
-      setNoOftp(data.data.count); // Adjust according to your actual data structure
+      setNoOftp(data?.data?.count); // Adjust according to your actual data structure
     }
   };
 
   const fetchLET = async () => {
     const data = await fetchData('https://uil-tp.com.ng/admin/get-studenstlect');
     if (data?.data?.count) {
-      setNoLect(data.data.count); // Adjust according to your actual data structure
+      setNoLect(data?.data?.count); // Adjust according to your actual data structure
     }
   };
 

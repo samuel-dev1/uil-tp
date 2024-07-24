@@ -10,13 +10,8 @@ export const fetchAdmin = async (values, navigate, callback) => {
         'Content-Type': 'application/json',
       }
     });
-
-   
-    
     localStorage.setItem("token", JSON.stringify(response.data.token));
     localStorage.setItem("user", JSON.stringify(response.data.user));
-
-
     navigate('/admin');
     alert(response.data.message);
     callback();

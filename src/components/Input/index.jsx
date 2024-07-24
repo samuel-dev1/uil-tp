@@ -1,9 +1,13 @@
 
 
-export const Input = ({ label, handleInputChange, bol, placehold}) => {
+export const Input = ({ label, handleInputChange, bol, placehold,error}) => {
   return (
     <div className="my-2 w-full">
     <p className="mb-2">{label}</p>
+    <p style={{
+      color:"red",
+      fontSize:10,
+    }} className="mb-1">{error?error:null}</p>
     <input
     placeholder={placehold}
     disabled={bol}

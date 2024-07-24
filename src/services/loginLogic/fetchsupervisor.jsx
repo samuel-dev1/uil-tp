@@ -8,7 +8,6 @@ export const fetchSupervisors = async (values, navigate) => {
 }, {
     headers: {
         'Content-Type': 'application/json',
-        'token':values.token
     }
 })
 .then(response => {

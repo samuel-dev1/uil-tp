@@ -1,17 +1,19 @@
 import { AppCard } from "../Core";
 import { fetchLogin } from "../../services/login";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export const AuthLogin = ()=> {
 const [matric, setMatric] = useState("")
 const [password, usePassword] = useState("")
+const navigate = useNavigate();
+
 
 const data ={
   matric_no:matric,
   password:password
 }
   const handleLogin = ()=> {
-    fetchLogin(data);
+    fetchLogin(data,navigate);
   }
   const hadleChange =(event)=>{
     setMatric(event.target.value)
