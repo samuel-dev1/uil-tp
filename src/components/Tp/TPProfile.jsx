@@ -22,7 +22,6 @@
        middlename: fmiddle,
      };
 
-   
      const changePhone = (event) => setPhone(event.target.value);
      const changeFname = (event) => setFname(event.target.value);
      const changeGender = (event) => setGender(event.target.value);
