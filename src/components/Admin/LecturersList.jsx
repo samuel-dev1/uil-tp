@@ -56,8 +56,8 @@ export const LecturersList = () => {
   const formatResult = (item) => {
     return (
       <div className='flex cursor-pointer'>
-        <span className='mx-2'>{item.number}</span>
-        <span className='mx-2'>{item.name}</span>
+        <span className='mx-2'>{item.id}</span>
+        <span className='mx-2'>{item.fullname}</span>
       </div>
     );
   };
@@ -69,10 +69,6 @@ export const LecturersList = () => {
     }),
   };
 
-  const selectOptions = result.map((item) => ({
-    value: item.id,
-    label: `${item.name} - ${item.dept}`,
-  }));
 
   return (
     <div className="mt-16 w-full mx-32">
@@ -94,22 +90,22 @@ export const LecturersList = () => {
               color: "white"
             }}
           />
-          <Select
+          {/* <Select
             value={selectedLecturer}
             options={selectOptions}
             onChange={handleOnSelect}
             className='mb-4'
             styles={customStyles}
             placeholder='Select a lecturer'
-          />
+          /> */}
         </div>
       </form>
-      {selectOptions.length === 0 ? "No options available" : 
+      {/* {selectOptions.length === 0 ? "No options available" : 
       <div>
         <Button  label={"reomve"} />
         <Button label={"edit"} />
       </div>
-      }
+      } */}
     </div>
   );
 };

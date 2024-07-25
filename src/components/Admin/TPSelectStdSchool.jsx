@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Input, Button } from "../../components";
 import Select from "react-select";
+import { WindowReloader } from '../WindowReloader'
 import { fetchSchoolList } from "../../services/admin/schoollogic/schoollogic";
 
 async function UpdateSchool(data) {
@@ -37,6 +38,7 @@ export const TPSelectStdSchool = () => {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [matricNumber, setMatricNumber] = useState("");
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     const fetchSchools = async () => {
@@ -54,13 +56,17 @@ export const TPSelectStdSchool = () => {
     fetchSchools();
   }, []);
 
+  const handleMatric = (event) => {
+    setMatricNumber(event.target.value);
+  };
+
   const handleSchoolChange = (selectedOption) => {
     setSelectedSchool(selectedOption);
   };
 
-  const handleSubjectChange = (selectedOption) => {
-    setSelectedSubject(selectedOption.value);
-  };
+  const handleSubject = (event)=> {
+    setSelectedSubject(event.target.value);
+  }
 
   const handleSubmit = async () => {
     const data = {
@@ -69,11 +75,16 @@ export const TPSelectStdSchool = () => {
       subject: selectedSubject
     };
 
+    setLoader(true);
     try {
       const response = await UpdateSchool(data);
       // Handle success response if needed
+      alert("New school successfully selected")
+      setLoader(false);
     } catch (error) {
       // Handle error from UpdateSchool function
+      alert("Error Selecting School")
+      setLoader(false);
       console.error("Error updating school:", error);
     }
   };
@@ -86,6 +97,13 @@ export const TPSelectStdSchool = () => {
     }),
   };
 
+  if (loader) {
+    return (
+      <>
+        <WindowReloader />
+      </>
+    );
+  }
   return (
     <div className="w-full py-10 px-12 h-auto">
       <div>
@@ -95,7 +113,7 @@ export const TPSelectStdSchool = () => {
         <Input
           label="Matric No"
           value={matricNumber}
-          onChange={(e) => setMatricNumber(e.target.value)}
+          handleInputChange={handleMatric}
         />
         <p className="mb-2">Change School to</p>
         <Select
@@ -108,17 +126,10 @@ export const TPSelectStdSchool = () => {
           className="mb-4"
           styles={customStyles}
         />
-        <p className="mb-2">Teaching Subject</p>
-        <Select
-          options={[
-            { value: "Mathematics", label: "Mathematics" },
-            { value: "Chemistry", label: "Chemistry" },
-            { value: "Physics", label: "Physics" },
-          ]}
+        <Input
           value={selectedSubject}
-          onChange={handleSubjectChange}
-          className="mb-4"
-          styles={customStyles}
+          handleInputChange={handleSubject}
+          label="Preferred Subject"
         />
       </div>
       <div className="flex justify-end mt-5">

@@ -7,7 +7,7 @@ export default {
       colors: {
         background1: '#D9D9D9',
         background2: '#29176D',
-        colour1: '#29176D'
+        colour1: '#29176D',
       }
     }
   },

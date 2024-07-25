@@ -1,61 +1,50 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { Button } from "../Button";
+import { Input } from "../Input";
+import { WindowReloader } from '../WindowReloader'
 
-import { ReactSearchAutocomplete } from 'react-search-autocomplete'
-
-import { Button } from '../Button';
-import { Input } from '../Input';
-
-
-async function getAstudent(search){
-  const token = JSON.parse(localStorage.getItem('token'));
-  try{
-    const response = await fetch("https://uil-tp.com.ng/admin/searc-for-std",{
-      body:JSON.stringify({
-        serach:search
+async function getAstudent(search, setLoader) {
+  const token = JSON.parse(localStorage.getItem("token"));
+  setLoader(true);
+  try {
+    const response = await fetch("https://uil-tp.com.ng/admin/searc-for-std", {
+      method: "POST", // Specify POST method here
+      body: JSON.stringify({
+        serach: search,
       }),
-      headers:{
-        "Content-type":'application/json',
-        "Authorization":`Bearer ${token}`
-      }
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
-    location.reload =false
-    const data  = response.json()
-    return data
-  }
-  catch(error){
-    return error
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json(); // Wait for JSON parsing
+    alert(data.message);
+    setLoader(false);
+    return data; // Return the parsed data
+  } catch (error) {
+    alert("error searching for student");
+    setLoader(false);
+    return { error: error.message }; // Return an object with error message
   }
 }
-
-
-
-
-
-
-
-const studentsList = [
-  { id: 1, name: 'Reuben Chukwuka', dept: 'Educational Technology', number: '08036753367' },
-  { id: 2, name: 'James Blunt', dept: 'Science Technology', number: '0803675378' },
-  { id: 2, name: 'Samson Siasia', dept: 'Art Education', number: '0703675378' },
-];
 
 export const TPViewStdProfile = () => {
+  const [search, setSearch] = useState("");
+  const [loader, setLoader] = useState(false);
+  const handleHoldsearch = (event) => {
+    setSearch(event.target.value);
+  };
 
-  const [search, setSearch] =useState(null)
-
-
-
-function handleHoldsearch(event){
-  setSearch(event.target.value)
-}
-
-const handleSearch = ()=>{
-  {
-  const searchHandle = getAstudent(search)
-  console.log(searchHandle)
-  }
-}
-
+  const handleSearch = () => {
+    console.log("search input", search);
+    const searchHandle = getAstudent(search, setLoader);
+    console.log(searchHandle);
+  };
 
   // const handleOnSearch = (string, results) => {
   //   // onSearch will have as the first callback parameter
@@ -77,37 +66,27 @@ const handleSearch = ()=>{
   //   console.log('Focused')
   // }
 
-  const formatResult = (item) => {
+  if (loader) {
     return (
       <>
-      <div className='flex cursor-pointer'>
-      <span className='mx-2'>{item.number}</span>
-        <span className='mx-2'>{item.name}</span>
-      </div>
+        <WindowReloader />
       </>
-    )
+    );
   }
-
   return (
     <>
-    <div className="mt-16 w-full mx-32">
-    <h1 className="text-xl font-bold mb-16 text-background2">Select Student School</h1>
-<form className="flex items-center w-full">   
-    <label className="sr-only">Search</label>
-    <div className="relative w-full">
-           <Input 
-   value={search}
-   handleInputChange={handleHoldsearch}
-   placehold={"search fro student with matric"}
-   label={"search for students"}
-   />
-   <Button
-handleSubmit={handleSearch}
-   label={"search"}
-   />
-    </div>
-</form>
-    </div>
+      <div className="mt-16 w-full mx-32">
+        <h1 className="text-xl font-bold mb-8 text-background2">
+          Select Student School
+        </h1>
+        <div className="relative w-full">
+          <Input
+            value={search}
+            handleInputChange={handleHoldsearch}
+          />
+          <Button handleSubmit={handleSearch} label={"search"} />
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
