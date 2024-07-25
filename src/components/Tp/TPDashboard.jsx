@@ -20,7 +20,7 @@ export const TPDashboard = () => {
         console.log(response)
         throw new Error('Network response was not ok.');
         
-      }
+      }    
 
       const data = await response.json();
       setDetails(data.data);
