@@ -1,5 +1,34 @@
+import { useState } from 'react'
 import { Button } from '../../components'
+
+
 export const ChangePassword = () => {
+const [password, setoldpaasward] = useState('')
+const [newPassword, setNewpassord] = useState('')
+
+const user = JSON.parse(localStorage.getItem("user"))
+const token = JSON.parse(localStorage.getItem("token"))
+
+const CheckResponse =async()=>{
+  const response = await fetch(`https://uil-tp.com.ng/manage/change-password`, {
+    method: "POST",
+    body:JSON.stringify({
+      oldPassword:password,
+      newPassword:newPassword,
+      id:user?.id
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  console.log(response.json())
+  
+}
+
+
+
   return (
     <>
        <div className="h-full w-full p-10 flex flex-col">
@@ -12,7 +41,7 @@ export const ChangePassword = () => {
         <input
         className="my-3 md:w-4/5 w-4/5 p-3 rounded-3xl italic bg-background1"
          placeholder="Confirm Password" type="password" />
-         <Button label="Change Password"/>
+         <Button handleSubmit={CheckResponse} label="Change Password"/>
     </div>
 
   </div>
