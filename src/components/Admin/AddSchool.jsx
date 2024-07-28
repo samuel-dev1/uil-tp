@@ -26,6 +26,7 @@ async function AddNewSchool(schooldetails) {
   }
 }
 
+
 export const AddSchool = () => {
   const [schName, setSchName] = useState("");
   const [address, setAddress] = useState("");

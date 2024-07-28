@@ -21,11 +21,6 @@ export const TPSidebar = ({ setMobileMenuOpen }) => {
       link: RouterNames.TPSelectSchool
     },
     {
-      title: 'Change TP School',
-      icon: 'https://i.imgur.com/SQR7s8q.png',
-      link: RouterNames.Dashboard
-    },
-    {
       title: 'Print Posting Letter',
       icon: 'https://i.imgur.com/q2dX2uv.png',
       link: RouterNames.TPPostingLetter

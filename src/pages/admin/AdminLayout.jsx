@@ -6,9 +6,7 @@ export const AdminLayout = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <>
-  <div
-        className="flex p-0 m-0 grid grid-cols-1 lg:grid-cols-7 h-screen"
-      >
+  <div className="flex p-0 m-0 grid grid-cols-1 lg:grid-cols-7 h-screen">
         <div style={{backgroundColor: "rgba(41, 23, 109, 0.1)"}} className="w-80 fixed h-screen px-4 hidden lg:block m-0 col-span-3">
           <AdminSidebar />
         </div>

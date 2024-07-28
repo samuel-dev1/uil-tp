@@ -48,17 +48,15 @@ export const PTAssignStd = () => {
     console.log(assign)
   }
 
-
-
   return (
     <div className="h-full w-full px-10 py-5">
-        <h1 className="text-xl text-background2 font-semibold">Assign Students to Lecturers</h1>
-    <h1 className="text-xl text-black font-semibold mt-10">Click on the button below to assign students to lecturers randomly</h1>
+        <h1 className="text-xl text-background2 font-semibold">Group Student To group</h1>
+    <h1 className="text-xl text-black font-semibold mt-10">Click on the button below to group students randomly</h1>
     <h1 className="text-xl text-black font-semibold">for peer teaching assignment</h1>
     <Input
     value={number}
     handleInputChange={handleChange}
-     placehold={"input the number to be group"} />
+     placehold={"the max number to be in a  group"} />
 <div className="mt-10">
         <Button handleSubmit={handleSubmit} label="Assign" />
     </div>
