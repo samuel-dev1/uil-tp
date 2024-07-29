@@ -1,14 +1,19 @@
-import { Input, Button } from "../../components";
+import { Input, Button, BackButton } from "../../components";
 import Select from "react-select";
 import { useState, useEffect } from "react";
 import { fetchSchoolList } from "../../services/admin/schoollogic/schoollogic";
 import { WindowReloader } from "../WindowReloader";
 
-export const AssignLtManually = () => {
+export const AssignLtManually = ({ setLtSelect }) => {
   const [schools, setSchools] = useState([]);
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [loader, setLoader] = useState(false);
   const [lecturerId, setLecturerId] = useState("");
+
+  const handleBack = ()=> {
+    setLtSelect('neutral');
+  }
+
 
   const token = JSON.parse(localStorage.getItem("token"));
   const customStyles = {
@@ -75,7 +80,10 @@ export const AssignLtManually = () => {
   return (
     <div className="w-full py-10 px-12 h-auto">
       <div>
-        <h1 className="text-xl font-bold mb-16 text-background2">
+      <div className="w-full mt-12 flex justify-end">
+        <BackButton handleBack={handleBack} />
+        </div>
+        <h1 className="text-xl font-bold mb-6 text-background2">
           Assign Lecturer To a Specific School
         </h1>
         <Input

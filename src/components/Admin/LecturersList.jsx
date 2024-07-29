@@ -1,13 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Input, Button } from "../../components"
+import { Input, Button, BackButton } from "../../components"
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import Select from 'react-select';
 
-export const LecturersList = () => {
+export const LecturersList = ({ setLtSelect }) => {
   const [search, setSearch] = useState('');
   const [result, setResult] = useState([]);
   const [selectedLecturer, setSelectedLecturer] = useState(null);
+
+  const handleBack = ()=> {
+    setLtSelect('neutral');
+  }
 
   const token = JSON.parse(localStorage.getItem("token"));
 
@@ -72,6 +76,9 @@ export const LecturersList = () => {
 
   return (
     <div className="mt-16 w-full mx-32">
+      <div className="w-full mt-12 flex justify-end">
+        <BackButton handleBack={handleBack} />
+        </div>
       <h1 className="text-xl font-bold mb-8 text-background2">List of Lecturers</h1>
       <form className="flex items-center w-full">
         <label className="sr-only">Search</label>
