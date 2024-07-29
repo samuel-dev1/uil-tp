@@ -24,6 +24,7 @@ export const TPDashboard = () => {
 
       const data = await response.json();
       setDetails(data.data);
+      console.log(data.data)
       
     } catch (error) {
       console.error('Error fetching student details:', error);
@@ -48,16 +49,25 @@ export const TPDashboard = () => {
           {details && (
             <div>
               <h1 className="text-2xl font-bold mb-8">School Assigned to</h1>
-              <Input bol={true} placehold={details?.name} label="School Name" value={details.schoolName} />
-              <Input placehold={details?.address} label="Location" value={details.location} />
-              <Input placehold={details?.subject} label="Teaching Subject" value={details.teachingSubject} />
+              <div className="my-2 w-full">
+              <p className="mb-2">School Name</p>
+              <input disabled value={details.name} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+              </div>
+              <div className="my-2 w-full">
+              <p className="mb-2">Location</p>
+              <input value={details.location} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+              </div>
+              <div className="my-2 w-full">
+              <p className="mb-2">Teaching subject</p>
+              <input value={details.subject} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+             </div>
             </div>
           )}
 
-          <div className="flex justify-between flex-col lg:flex-row mt-5 lg:mt-10">
+          {/* <div className="flex justify-between flex-col lg:flex-row mt-5 lg:mt-10">
             <Button label="Print Posting Letter" />
             <Button label="Change School" />
-          </div>
+          </div> */}
         </div>
       </div>
     </>
