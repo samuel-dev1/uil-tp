@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
+import { BackButton } from '../BackButton'
 import { WindowReloader } from '../WindowReloader'
 
 async function getAstudent(search, setLoader) {
@@ -33,7 +34,7 @@ async function getAstudent(search, setLoader) {
   }
 }
 
-export const TPViewStdProfile = () => {
+export const TPViewStdProfile = ({ setTpOptions }) => {
   const [search, setSearch] = useState("");
   const [loader, setLoader] = useState(false);
   const handleHoldsearch = (event) => {
@@ -45,6 +46,10 @@ export const TPViewStdProfile = () => {
     const searchHandle = getAstudent(search, setLoader);
     console.log(searchHandle);
   };
+
+  const handleBack = ()=> {
+    setTpOptions('neutral');
+  }
 
   // const handleOnSearch = (string, results) => {
   //   // onSearch will have as the first callback parameter
@@ -76,6 +81,9 @@ export const TPViewStdProfile = () => {
   return (
     <>
       <div className="mt-16 w-full mx-32">
+      <div className="w-full mt-12 flex justify-end">
+        <BackButton handleBack={handleBack} />
+        </div>
         <h1 className="text-xl font-bold mb-8 text-background2">
           Select Student School
         </h1>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Input, Button } from "../../components";
+import { Input, Button, BackButton } from "../../components";
 import { WindowReloader } from '../WindowReloader'
 import Select from "react-select";
 import { fetchSchoolList } from "../../services/admin/schoollogic/schoollogic";
@@ -33,12 +33,16 @@ async function UpdateSchool(data) {
   }
 }
 
-export const TPChangeStdSchool = () => {
+export const TPChangeStdSchool = ({ setTpOptions }) => {
   const [schools, setSchools] = useState([]);
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [selectedSubject, setSelectedSubject] = useState("");
   const [loader, setLoader] = useState(false);
   const [matricNumber, setMatricNumber] = useState("");
+
+  const handleBack = ()=> {
+    setTpOptions('neutral');
+  }
 
   useEffect(() => {
     const fetchSchools = async () => {
@@ -106,6 +110,9 @@ export const TPChangeStdSchool = () => {
   }
   return (
     <div className="w-full py-10 px-12 h-auto">
+         <div className="w-full mt-12 flex justify-end">
+        <BackButton handleBack={handleBack} />
+        </div>
       <div>
         <h1 className="text-xl font-bold mb-6 text-background2">
           Change Student School
