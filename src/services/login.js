@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 
-export const fetchLogin = async (values, navigate) => {
+export const fetchLogin = async (values, navigate, callback) => {
   axios.post('https://uil-tp.com.ng/login/login-students', {
     matric_no:values.matric_no,
     password:values.password
@@ -16,10 +16,12 @@ export const fetchLogin = async (values, navigate) => {
     localStorage.setItem("user", JSON.stringify(response.data.user));
     navigate('/tp');
     alert(response.data.message)
+    callback();
 })
 .catch(error => {
     console.error('There was an error!', error);
     alert(error.response.data.message)
+    callback();
 });
-  };
+};
   
