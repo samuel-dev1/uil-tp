@@ -108,17 +108,10 @@ export const TPSelectStdSchool = () => {
           className="mb-4"
           styles={customStyles}
         />
-        <p className="mb-2">Teaching Subject</p>
-        <Select
-          options={[
-            { value: "Mathematics", label: "Mathematics" },
-            { value: "Chemistry", label: "Chemistry" },
-            { value: "Physics", label: "Physics" },
-          ]}
-          value={selectedSubject}
-          onChange={handleSubjectChange}
-          className="mb-4"
-          styles={customStyles}
+        <Input
+          label="Teaching Subject"
+          value={matricNumber}
+          onChange={(e) => setMatricNumber(e.target.value)}
         />
       </div>
       <div className="flex justify-end mt-5">

@@ -40,22 +40,19 @@ const studentsList = [
 ];
 
 export const TPViewStdProfile = () => {
-
   const [search, setSearch] =useState(null)
 
 
-
-function handleHoldsearch(event){
-  setSearch(event.target.value)
-}
-
 const handleSearch = ()=>{
-  {
-  const searchHandle = getAstudent(search)
-  console.log(searchHandle)
-  }
+  // const searchHandle = getAstudent(search)
+  console.log("handle seearch")
 }
 
+const handleHoldsearch = (event) => {
+  event.preventDefault();
+  // setSearch(event.target.value)
+  console.log("handle hold search");
+}
 
   // const handleOnSearch = (string, results) => {
   //   // onSearch will have as the first callback parameter
