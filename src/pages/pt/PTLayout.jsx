@@ -4,9 +4,10 @@ import { Outlet } from "react-router-dom";
 
 export const PTLayout = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const user = JSON.parse(localStorage.getItem('user'))
+  console.log(user)
   return (
     <>
-  
       <div
         className="flex p-0 m-0 grid grid-cols-1 lg:grid-cols-7 h-screen"
       >
@@ -17,7 +18,6 @@ export const PTLayout = () => {
         <Nav
         setMobileMenuOpen={setMobileMenuOpen}
       />
-      
       <div className="lg:col-span-4  col-span-1 flex justify-center">
           <Outlet />
         </div>

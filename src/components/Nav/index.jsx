@@ -25,7 +25,7 @@ export const Nav = ({ setMobileMenuOpen }) => {
           :
           <div>
           <h1 className="text-white text-xl">{user?.lastname?user?.firstname + " "+ user?.lastname:"update your profile"}</h1>
-          <p className="text-white text-xs">{user?.staff_number?"Staff Number ":"Matric Number"}{user?.matric_no}</p>
+          <p className="text-white text-xs">{user?.staff_number?"Staff Number ":"Matric Number"}{": "+ user?.matric_no}</p>
           </div>
 }
         </div>

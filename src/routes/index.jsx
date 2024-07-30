@@ -129,6 +129,8 @@ export const routes = [
         },
       ]
     },
+
+    
     {
       path: '/admin',
       component: <AdminLayout />,
