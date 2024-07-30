@@ -23,7 +23,7 @@ const data ={
       setOnSubmit(false);
     }));
   }
-  const hadleChange =(event)=>{
+  const handleChange =(event)=>{
     setStaff_id(event.target.value)
   }
   const handleChange2 =(event)=>{
@@ -38,7 +38,7 @@ const data ={
       <h3 className="text-2xl my-3 text-black font-bold">Sign In</h3>
       <input
       value={staff_id}
-      onChange={hadleChange}
+      onChange={handleChange}
         className="bg-background1 my-3 md:w-3/5 w-4/5 p-3 rounded-3xl italic"
         placeholder="Matric No"
         type="text"

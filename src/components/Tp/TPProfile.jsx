@@ -1,5 +1,6 @@
    import React, { useEffect, useState } from 'react';
-   import { Input, Button } from '../../components'; // Adjust the import path as per your actual file structure
+   import { Input, Button } from '../../components'; 
+   import { WindowReloader } from '../../components';
    
    export const TPProfile = () => {
      const user = JSON.parse(localStorage.getItem("user"));
@@ -11,7 +12,8 @@
      const [femail, setEmail] = useState("");
      const [fmiddle, setFmiddle] = useState("");
      const [gender, setGender] = useState("");
-     const [details, setDetails]= useState([])
+     const [loader, setLoader] = useState(false);
+     const [details, setDetails]= useState([]);
    
      const dataform = {
        matric_no: user?.matric_no,
@@ -22,15 +24,10 @@
        firstname: fname,
        middlename: fmiddle,
      };
-     const changePhone = (event) => setPhone(event.target.value);
-     const changeFname = (event) => setFname(event.target.value);
-     const changeGender = (event) => setGender(event.target.value);
-     const changeEmail = (event) => setEmail(event.target.value);
-     const changeMiddle = (event) => setFmiddle(event.target.value);
-     const changLast = (event) => setLname(event.target.value);
    
      const handleSubmit = async (e) => {
        e.preventDefault();
+       setLoader(true);
        const session = 2024
        try {
          const response = await fetch(`https://uil-tp.com.ng/stud/students-edit?session=${session}`, {
@@ -48,10 +45,12 @@
 
          }
    
-         console.log('Profile updated successfully:', response);
+         alert('Profile updated successfully');
+         setLoader(false);
    
        } catch (error) {
-         console.error('Error occurred while updating profile:', error);
+         alert('Error occurred while updating profile');
+         setLoader(false);
        }
      };
 
@@ -70,7 +69,13 @@
         }
   
         const data = await response.json();
-        setDetails(data.data[0]);
+        console.log(data.data[0]);
+            setFname(data.data[0].firstname);
+            setPhone(data.data[0].phone_number);
+            setFmiddle(data.data[0].middle_name);
+            setEmail(data.data[0].email);
+            setLname(data.data[0].lastname)
+            setGender(data.data[0].gender)
       } catch (error) {
         console.error('Error occurred while fetching student details:', error);
       }
@@ -81,23 +86,58 @@
     }, []);
    
    
+  useEffect(()=> {
+   setFname(details.firstname);
+  },[user]);
+
+
+  if (loader) {
+    return (
+      <>
+        <WindowReloader />
+      </>
+    );
+  }
      return (
        <>
          <div className="h-full w-full p-10">
            <h1 className="text-4xl text-background2 font-semibold">My Profile</h1>
-   
            <div className="flex lg:flex-row flex-col lg:w-4/5 w-full mt-8">
              <div className="w-full">
-               <Input value={fname} handleInputChange={changeFname} label="First Name" placehold={  user?.firstname||details?.firstname} />
-               <Input error={"You can't update this"} label="Matric Number/id" placehold={user?.matric_no} bol={true} />
-               <Input value={phone} handleInputChange={changePhone} placehold={user?.phone_number||details?.phone_number} label="Phone Number" />
-               <Input value={fmiddle} handleInputChange={changeMiddle} label="Middle Name" placehold={user?.middle_name||details?.middle_name} />
+             <div className="my-2 w-full">
+             <p className="mb-2">First Name</p>
+               <input value={fname} onChange={(e)=> setFname(e.target.value)}  className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+              </div>
+              <div className="my-2 w-full">
+              <p className="mb-2">Matric Number/Id</p>
+               <input disabled value={user?.matric_no} className="w-full cursor-not-allowed bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+               </div>
+               <div className="my-2 w-full">
+               <p className="mb-2">Phone Number</p>
+               <input value={phone} onChange={(e)=> setPhone(e.target.value)} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+               </div>
+               <div className="my-2 w-full">
+               <p className="mb-2">Middle Name</p>
+               <input value={fmiddle} onChange={(e)=> setFmiddle(e.target.value)} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+               </div>
              </div>
              <div className="lg:mx-8 mx-0 w-full">
-               <Input value={femail} handleInputChange={changeEmail} placehold={user?.email||details?.email} label="Email" />
-               <Input error={"You can't update this"} bol={true} placehold={user?.department} label="Department" />
-               <Input value={lname} handleInputChange={changLast} label="Last Name" placehold={user?.lastname||details?.lastname} />
-               <Input value={gender} handleInputChange={changeGender} label="Gender" placehold={user?.gender||details?.gender} />
+             <div className="my-2 w-full">
+             <p className="mb-2">Email</p>
+               <input value={femail} onChange={(e)=> e.target.value} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+              </div>
+              <div className="my-2 w-full">
+              <p className="mb-2">Department</p>
+               <input disabled value={user?.department} className="w-full cursor-not-allowed bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+               </div>
+               <div className="my-2 w-full">
+              <p className="mb-2">Last Name</p>
+               <input value={lname} onChange={(e)=> setLname(e.target.value)} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+               </div>
+               <div className="my-2 w-full">
+              <p className="mb-2">Gender</p>
+               <input value={gender} onChange={(e)=> setGender(e.target.value)} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+             </div>
              </div>
            </div>
    

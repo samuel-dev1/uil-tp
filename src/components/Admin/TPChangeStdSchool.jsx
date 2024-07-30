@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Input, Button } from "../../components";
+import { useState, useEffect } from "react";
+import { Input, Button, BackButton } from "../../components";
+import { WindowReloader } from '../WindowReloader'
 import Select from "react-select";
 import { fetchSchoolList } from "../../services/admin/schoollogic/schoollogic";
 
@@ -32,11 +33,16 @@ async function UpdateSchool(data) {
   }
 }
 
-export const TPChangeStdSchool = () => {
+export const TPChangeStdSchool = ({ setTpOptions }) => {
   const [schools, setSchools] = useState([]);
   const [selectedSchool, setSelectedSchool] = useState(null);
-  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const [loader, setLoader] = useState(false);
   const [matricNumber, setMatricNumber] = useState("");
+
+  const handleBack = ()=> {
+    setTpOptions('neutral');
+  }
 
   useEffect(() => {
     const fetchSchools = async () => {
@@ -54,27 +60,36 @@ export const TPChangeStdSchool = () => {
     fetchSchools();
   }, []);
 
-  const handleSchoolChange = (selectedOption) => {
-    setSelectedSchool(selectedOption);
+  const handleMatric = (event) => {
+    setMatricNumber(event.target.value);
+  };
+  const handleSchoolChange = (selected) => {
+    setSelectedSchool(selected);
   };
 
-  const handleSubjectChange = (selectedOption) => {
-    setSelectedSubject(selectedOption.value);
-  };
+  const handleSubject = (event)=> {
+    setSelectedSubject(event.target.value);
+  }
 
   const handleSubmit = async () => {
+    setLoader(true);
     const data = {
-      school_id: selectedSchool.value,
+      school_id: selectedSchool?.value,
       matric_number: matricNumber,
       subject: selectedSubject
     };
+    console.log(data);
 
     try {
       const response = await UpdateSchool(data);
+      alert("school updated successfully")
+      setLoader(false);
       // Handle success response if needed
     } catch (error) {
       // Handle error from UpdateSchool function
+      alert("Error updating school");
       console.error("Error updating school:", error);
+      setLoader(false);
     }
   };
 
@@ -86,8 +101,18 @@ export const TPChangeStdSchool = () => {
     }),
   };
 
+  if (loader) {
+    return (
+      <>
+        <WindowReloader />
+      </>
+    );
+  }
   return (
     <div className="w-full py-10 px-12 h-auto">
+         <div className="w-full mt-12 flex justify-end">
+        <BackButton handleBack={handleBack} />
+        </div>
       <div>
         <h1 className="text-xl font-bold mb-6 text-background2">
           Change Student School
@@ -95,23 +120,23 @@ export const TPChangeStdSchool = () => {
         <Input
           label="Matric No"
           value={matricNumber}
-          onChange={(e) => setMatricNumber(e.target.value)}
+          handleInputChange={handleMatric}
         />
         <p className="mb-2">Change School to</p>
         <Select
+         onChange={handleSchoolChange}
           options={schools.map((school) => ({
             value: school.id,
             label: school.name,
           }))}
-          value={selectedSchool}
-          onChange={handleSchoolChange}
+          
           className="mb-4"
           styles={customStyles}
         />
-       <Input
-          label="Teaching Subject"
-          value={matricNumber}
-          onChange={(e) => setMatricNumber(e.target.value)}
+        <Input
+          value={selectedSubject}
+          handleInputChange={handleSubject}
+          label="Preferred Subject"
         />
       </div>
       <div className="flex justify-end mt-5">

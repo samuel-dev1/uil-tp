@@ -14,7 +14,7 @@ export const StudentManagement = () => {
   if(studentSelectTP){
     return(
       <>
-      <TeachingPracticeselect />
+      <TeachingPracticeselect setStudentSelectTP={setStudentSelectTP} />
       </>
     )
   } else if(studentSelectTP === false){

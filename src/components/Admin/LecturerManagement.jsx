@@ -7,19 +7,19 @@ export const LecturerManagement = () => {
   if(ltSelect === "manual"){
     return(
       <>
-       <AssignLtManually />
+       <AssignLtManually setLtSelect={setLtSelect} />
       </>
     )
   } else if(ltSelect === "random"){
     return(
       <>
-       <AssignLtRandomly />
+       <AssignLtRandomly setLtSelect={setLtSelect} />
       </>
     )
   } else if(ltSelect === "list"){
     return(
       <>
-       <LecturersList />
+       <LecturersList setLtSelect={setLtSelect} />
       </>
     )
   }
