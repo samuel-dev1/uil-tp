@@ -8,11 +8,8 @@ async function getAstudent(search, setLoader) {
   const token = JSON.parse(localStorage.getItem("token"));
   setLoader(true);
   try {
-    const response = await fetch("https://uil-tp.com.ng/admin/searc-for-std", {
+    const response = await fetch(`https://uil-tp.com.ng/admin/searc-for-std?serach=${search}`, {
       method: "POST", // Specify POST method here
-      body: JSON.stringify({
-        serach: search,
-      }),
       headers: {
         "Content-type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -30,7 +27,7 @@ async function getAstudent(search, setLoader) {
   } catch (error) {
     alert("error searching for student");
     setLoader(false);
-    return { error: error.message }; // Return an object with error message
+   console.log(error); // Return an object with error message
   }
 }
 

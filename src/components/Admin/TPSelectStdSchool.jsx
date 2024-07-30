@@ -75,11 +75,12 @@ export const TPSelectStdSchool = ({ setTpOptions }) => {
 
   const handleSubmit = async () => {
     const data = {
-      school_id: selectedSchool.value,
+      schhol_id: selectedSchool.value,
       matric_number: matricNumber,
       subject: selectedSubject
     };
 
+    console.log(data);
     setLoader(true);
     try {
       const response = await UpdateSchool(data);
@@ -116,7 +117,7 @@ export const TPSelectStdSchool = ({ setTpOptions }) => {
         </div>
       <div>
         <h1 className="text-xl font-bold mb-6 text-background2">
-          Change Student School
+          Select Student School
         </h1>
         <Input
           label="Matric No"

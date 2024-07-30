@@ -17,7 +17,7 @@ export const fetchLogin = async (values, navigate, callback) => {
     if(response.data.user.type === "tp"){
         navigate('/tp');
     }else if(response.data.user.type === "ob"){
-        navigate('/pt');
+        navigate('/');
     }
     alert(response.data.message)
     callback();

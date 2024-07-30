@@ -54,7 +54,7 @@ const data ={
         <span className="text-sm ml-2 font-bold text-black">Remember me</span>
       </div>
       <button onClick={handleLogin} style={{ backgroundColor: '#29176D' }} className="text-white mt-8 py-2 px-8 rounded-2xl">
-      {onSubmit? <FormSpinner />: "Sign In Fvck"}
+      {onSubmit? <FormSpinner />: "Sign In"}
       </button>
     </AppCard>
   );

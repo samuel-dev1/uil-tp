@@ -39,12 +39,7 @@ export const StudentManagement = () => {
             </div>
            
             </div>
-            <div className='w-half flex justify-baseline'>
-            <h6 className='ml-4 mb-6 font-semibold'>close/open student registration</h6>
-
-            <Checkbox onClick={handleSetClose} checked={close} color='darkblue'/>
-            </div>
-            <p>{close?"open":"close"}</p>
+            
         </div>    
         </div>
       </div>

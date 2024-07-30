@@ -72,13 +72,13 @@ export const TPChangeStdSchool = ({ setTpOptions }) => {
   }
 
   const handleSubmit = async () => {
-    setLoader(true);
     const data = {
-      school_id: selectedSchool?.value,
+      schhol_id: selectedSchool?.value,
       matric_number: matricNumber,
       subject: selectedSubject
     };
     console.log(data);
+    setLoader(true);
 
     try {
       const response = await UpdateSchool(data);
