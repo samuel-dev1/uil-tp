@@ -2,9 +2,13 @@ import { AppCard } from "../Core";
 import { fetchLogin } from "../../services/login";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FormSpinner } from "../FormSpinner";
+
+
 export const AuthLogin = ()=> {
-const [matric, setMatric] = useState("")
-const [password, usePassword] = useState("")
+const [matric, setMatric] = useState("");
+const [password, usePassword] = useState("");
+const [onSubmit, setOnSubmit] = useState(false);
 const navigate = useNavigate();
 
 
@@ -13,7 +17,10 @@ const data ={
   password:password
 }
   const handleLogin = ()=> {
-    fetchLogin(data,navigate);
+    setOnSubmit(true);
+    fetchLogin(data,navigate, ()=> {
+      setOnSubmit(false);
+    });
   }
   const hadleChange =(event)=>{
     setMatric(event.target.value)
@@ -47,7 +54,7 @@ const data ={
         <span className="text-sm ml-2 font-bold text-black">Remember me</span>
       </div>
       <button onClick={handleLogin} style={{ backgroundColor: '#29176D' }} className="text-white mt-8 py-2 px-8 rounded-2xl">
-        Sign In
+      {onSubmit? <FormSpinner />: "Sign In"}
       </button>
     </AppCard>
   );

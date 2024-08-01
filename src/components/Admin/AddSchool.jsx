@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Input, Button } from "../../components";
+import { WindowReloader } from "../../components";
 
 const token = JSON.parse(localStorage.getItem("token"));
 
@@ -31,7 +32,10 @@ export const AddSchool = () => {
   const [schName, setSchName] = useState("");
   const [address, setAddress] = useState("");
   const [Allocation, setAllocation] = useState("");
+  const [loader, setLoader] = useState(false);
+
   const handleSubmit = async () => {
+    setLoader(true);
     const schooldetails = {
       name_of_school: schName,
       address: address,
@@ -40,11 +44,12 @@ export const AddSchool = () => {
     try {
       const response = await AddNewSchool(schooldetails);
       alert(response.message);
+      setLoader(false);
 
     } catch (error) {
       console.error("Error adding school:", error.message);
       alert(error.message); 
-    
+      setLoader(false);
     }
   };
 
@@ -60,6 +65,13 @@ export const AddSchool = () => {
     setAllocation(event.target.value);
   };
 
+  if (loader) {
+    return (
+      <>
+        <WindowReloader />
+      </>
+    );
+  }
   return (
     <>
       <div className="w-full py-10 px-12 h-auto">

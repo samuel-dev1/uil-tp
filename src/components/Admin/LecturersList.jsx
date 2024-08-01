@@ -1,13 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Input, Button } from "../../components"
+import { Input, Button, BackButton } from "../../components"
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import Select from 'react-select';
 
-export const LecturersList = () => {
+export const LecturersList = ({ setLtSelect }) => {
   const [search, setSearch] = useState('');
   const [result, setResult] = useState([]);
   const [selectedLecturer, setSelectedLecturer] = useState(null);
+
+  const handleBack = ()=> {
+    setLtSelect('neutral');
+  }
 
   const token = JSON.parse(localStorage.getItem("token"));
 
@@ -56,8 +60,8 @@ export const LecturersList = () => {
   const formatResult = (item) => {
     return (
       <div className='flex cursor-pointer'>
-        <span className='mx-2'>{item.number}</span>
-        <span className='mx-2'>{item.name}</span>
+        <span className='mx-2'>{item.id}</span>
+        <span className='mx-2'>{item.fullname}</span>
       </div>
     );
   };
@@ -69,13 +73,12 @@ export const LecturersList = () => {
     }),
   };
 
-  const selectOptions = result.map((item) => ({
-    value: item.id,
-    label: `${item.name} - ${item.dept}`,
-  }));
 
   return (
     <div className="mt-16 w-full mx-32">
+      <div className="w-full mt-12 flex justify-end">
+        <BackButton handleBack={handleBack} />
+        </div>
       <h1 className="text-xl font-bold mb-8 text-background2">List of Lecturers</h1>
       <form className="flex items-center w-full">
         <label className="sr-only">Search</label>
@@ -94,22 +97,22 @@ export const LecturersList = () => {
               color: "white"
             }}
           />
-          <Select
+          {/* <Select
             value={selectedLecturer}
             options={selectOptions}
             onChange={handleOnSelect}
             className='mb-4'
             styles={customStyles}
             placeholder='Select a lecturer'
-          />
+          /> */}
         </div>
       </form>
-      {selectOptions.length === 0 ? "No options available" : 
+      {/* {selectOptions.length === 0 ? "No options available" : 
       <div>
         <Button  label={"reomve"} />
         <Button label={"edit"} />
       </div>
-      }
+      } */}
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import axios from 'axios';
+import { useState } from 'react';
 import Select from 'react-select'
 import { Button } from "../../components"
+import { WindowReloader } from "../../components";
 
 
 const locationOptions = [
@@ -11,6 +12,7 @@ const locationOptions = [
 
 
 export const AdminSessionManagement = () => {
+  const [loader, setLoader] = useState(false);
   const token = JSON.parse(localStorage.getItem("token"))
 
     const customStyles = {
@@ -47,6 +49,7 @@ export const AdminSessionManagement = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       const session = '2024/2025';
+      setLoader(true);
     
       try {
         const response = await fetch("https://uil-tp.com.ng/admin/start-session", {
@@ -57,17 +60,13 @@ export const AdminSessionManagement = () => {
           },
           body: JSON.stringify({ session })
         });
-    
-        if (!response.ok) {
-          throw new Error('Network response was not ok.');
-          
-        }
-    
         const responseData = await response.json();
-        console.log(responseData.message);
+        alert(responseData.message);
+        setLoader(false);
     
       } catch (error) {
         console.error('Error occurred:', error);
+        setLoader(false);
       }
     };
     
@@ -76,7 +75,7 @@ export const AdminSessionManagement = () => {
 const handleSubmit2 = async (e) => {
   e.preventDefault();
   const session = '2024/2025';
-
+  setLoader(true);
   try {
     const response = await fetch("https://uil-tp.com.ng/admin/close-session", {
       method: 'POST',
@@ -87,16 +86,13 @@ const handleSubmit2 = async (e) => {
       body: JSON.stringify({ session })
     });
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok.');
-      
-    }
-
     const responseData = await response.json();
-    console.log(responseData.message);
+    alert(responseData.message);
+    setLoader(false);
 
   } catch (error) {
-    console.error('Error occurred:', error);
+    setLoader(false);
+    alert('Error occurred');
   }
 };
 
@@ -105,7 +101,7 @@ const handleSubmit2 = async (e) => {
 const handleSubmit3 = async (e) => {
   e.preventDefault();
   const session = '2024/2025';
-
+  setLoader(true);
   try {
     const response = await fetch("https://uil-tp.com.ng/admin/start-registration", {
       method: 'POST',
@@ -116,22 +112,19 @@ const handleSubmit3 = async (e) => {
       body: JSON.stringify({ session })
     });
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok.');
-      
-    }
-
     const responseData = await response.json();
-    console.log(responseData.message);
+    alert(responseData.message);
+    setLoader(false);
 
   } catch (error) {
-    console.error('Error occurred:', error);
+    alert('Error occurred');
+    setLoader(false);
   }
 };
 const handleSubmit4 = async (e) => {
   e.preventDefault();
   const session = '2024/2025';
-
+  setLoader(true);
   try {
     const response = await fetch("https://uil-tp.com.ng/admin/close-registration", {
       method: 'POST',
@@ -142,16 +135,13 @@ const handleSubmit4 = async (e) => {
       body: JSON.stringify({ session })
     });
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok.');
-      
-    }
-
     const responseData = await response.json();
-    console.log(responseData.message);
+    alert(responseData.message);
+    setLoader(false);
 
   } catch (error) {
-    console.error('Error occurred:', error);
+    alert('Error occurred');
+    setLoader(false);
   }
 };
 
@@ -159,7 +149,7 @@ const handleSubmit4 = async (e) => {
 const handleSubmit5= async (e) => {
   e.preventDefault();
   const session = '2024/2025';
-
+  setLoader(true);
   try {
     const response = await fetch("https://uil-tp.com.ng/admin/start-registration", {
       method: 'POST',
@@ -170,21 +160,23 @@ const handleSubmit5= async (e) => {
       body: JSON.stringify({ session })
     });
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok.');
-      
-    }
-
     const responseData = await response.json();
-    console.log(responseData.message);
-
+    alert(responseData.message);
+    setLoader(false);
   } catch (error) {
-    console.error('Error occurred:', error);
+    alert('Error occurred');
+    setLoader(false);
   }
 };
 
 
-
+if (loader) {
+  return (
+    <>
+      <WindowReloader />
+    </>
+  );
+}
   return (
     <div className="w-full py-10 px-12 h-auto">
     <div>
@@ -210,8 +202,14 @@ const handleSubmit5= async (e) => {
      <Button handleSubmit={handleSubmit2} label="Close Session" />
    </div>
    <p>please start for student to be able to do registration</p>
+   <div className='flex items-center'>
+   <div className='mx-2'>
    <Button handleSubmit={handleSubmit4} label="Close student registration" />
-   <Button handleSubmit={handleSubmit5} label="start student registration" />
+   </div>
+   <div className='mx-2'>
+   <Button handleSubmit={handleSubmit5} label="Start student registration" />
+   </div>
+   </div>
     </div>
     </div>
   )

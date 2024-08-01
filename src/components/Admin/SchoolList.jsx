@@ -50,9 +50,8 @@ export const SchoolList = ({ setAddSchool }) => {
           Add new
         </button>
       </div>
-      <form className="flex items-center w-11/12 mb-4">
         <label className="sr-only">Search</label>
-        <div className="relative w-full">
+        <div className="relative w-full mb-6">
           <ReactSearchAutocomplete
             items={schools}
             onSearch={handleOnSearch}
@@ -68,8 +67,7 @@ export const SchoolList = ({ setAddSchool }) => {
             }}
           />
         </div>
-      </form>
-      <div className="h-full w-11/12 overflow-scroll mb-12">
+      <div style={{width: "58rem"}} className="h-full overflow-scroll mb-12">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
             <tr className="grid grid-cols-6 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
@@ -92,8 +90,8 @@ export const SchoolList = ({ setAddSchool }) => {
                   <td className="p-4">{capacity}</td>
                   <td className="p-4">{tp_count}</td>
                   <td className="p-4 flex space-x-2">
-                    <button className="py-1 px-2 bg-blue-500 text-white rounded" onClick={() => handleUpdate(id)}>Update</button>
-                    <button className="py-1 px-2 bg-red-500 text-white rounded" onClick={() => handleDelete(id)}>Delete</button>
+                    <button className="py-1 px-2 text-sm bg-background1 text-black rounded" onClick={() => handleUpdate(id)}>Update</button>
+                    <button className="py-1 px-2 text-sm bg-red-700 text-white rounded" onClick={() => handleDelete(id)}>Delete</button>
                   </td>
                 </tr>
               ))
