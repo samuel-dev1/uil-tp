@@ -21,8 +21,10 @@ import  {
   LecturerDashboardPage,
   ScoreStudentsPage,
   AdminLoginPage,
-  Supervisor
+  Supervisor,
 } from "../pages";
+
+import { ViewPage } from "../components/Nav/ViewPage";
 
 export const routes = [
     {
@@ -30,6 +32,12 @@ export const routes = [
       component: <Login />,
       standalone: true,
     },
+    {
+      path: '/view',
+      component: <ViewPage />,
+      standalone: true,
+    },
+
     {
       path:"/adminLogin",
       component:<AdminLoginPage />,

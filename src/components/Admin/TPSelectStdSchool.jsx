@@ -75,7 +75,7 @@ export const TPSelectStdSchool = ({ setTpOptions }) => {
 
   const handleSubmit = async () => {
     const data = {
-      schhol_id: selectedSchool.value,
+      school_id: selectedSchool.value,
       matric_number: matricNumber,
       subject: selectedSubject
     };
