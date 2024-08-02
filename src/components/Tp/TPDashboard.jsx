@@ -51,15 +51,17 @@ export const TPDashboard = () => {
               <h1 className="text-2xl font-bold mb-8">School Assigned to</h1>
               <div className="my-2 w-full">
               <p className="mb-2">School Name</p>
-              <input disabled value={details.name} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+              <input disabled value={details?.name} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
               </div>
               <div className="my-2 w-full">
               <p className="mb-2">Location</p>
-              <input value={details.location} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+              <input value={details?.address} 
+             
+              className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
               </div>
               <div className="my-2 w-full">
               <p className="mb-2">Teaching subject</p>
-              <input value={details.subject} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
+              <input value={details?.subject} className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" />
              </div>
             </div>
           )}

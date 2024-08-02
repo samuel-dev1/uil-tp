@@ -30,8 +30,6 @@ export const SchoolList = ({ setAddSchool }) => {
     }
   };
 
-
-
   const Deketeschool = (id)=>{
     try{
 const response = fetch(`https://uil-tp.com.ng/admin/admin-delete?id=${id}`,{
@@ -46,13 +44,6 @@ const response = fetch(`https://uil-tp.com.ng/admin/admin-delete?id=${id}`,{
 console.log(e)
     }
   }
-
-
-
-  const updateschool=(id)={
-    
-  }
-
   useEffect(() => {
     handlesCHli();
   }, []);

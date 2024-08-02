@@ -66,6 +66,7 @@ export const AdminDashboard = () => {
 
   return (
     <>
+    <>
     <div className="h-full w-full p-10">
       <div className="flex justify-end">
         <div className="w-2/5 flex items-center justify-center">
@@ -98,6 +99,7 @@ export const AdminDashboard = () => {
         </div>
       </div>
     </div>
+    </>
     </>
   );
 };
