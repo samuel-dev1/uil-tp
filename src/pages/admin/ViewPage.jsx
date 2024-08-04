@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import { Button } from "../../components/Button";
+import { LecturerView } from '../../components'
 
 export const ViewPage = () => {
   const [data, setData] = useState(null);
@@ -67,6 +68,13 @@ export const ViewPage = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
+  if(type === "staff"){
+    return(
+      <>
+       <LecturerView data={data} />
+      </>
+    )
+  }
   return (
     <div style={{ padding: '20px', textAlign: 'center' }} className="w-full">
         <div className="flex flex-col justify-center items-center mb-16">

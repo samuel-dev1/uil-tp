@@ -166,6 +166,10 @@ export const routes = [
           path: 'student-management/view',
           component: <ViewPage />
         },
+        {
+          path: 'lecturer-management/view',
+          component: <ViewPage />
+        },
       ]
     },
 ]
