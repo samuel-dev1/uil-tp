@@ -1,7 +1,6 @@
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
-const user = JSON.parse(localStorage.getItem('user'));
-console.log(user)
+const user = JSON?.parse(localStorage?.getItem('user'));
 
 export const Nav = ({ setMobileMenuOpen }) => {
   return (

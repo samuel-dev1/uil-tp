@@ -11,8 +11,18 @@ const user = JSON.parse(localStorage.getItem("user"))
 const token = JSON.parse(localStorage.getItem("token"))
 
 const CheckResponse =async()=>{
+
+  let url = ''
+
+if(user?.matric_no)
+{
+  url =`https://uil-tp.com.ng/manage/change-password`
+}
+else{
+  url =`https://uil-tp.com.ng/manage/change-password-supervisors`
+}
   setLoader(true);
-  const response = await fetch(`https://uil-tp.com.ng/manage/change-password`, {
+  const response = await fetch(url, {
     method: "POST",
     body:JSON.stringify({
       oldPassword:password,
@@ -25,10 +35,10 @@ const CheckResponse =async()=>{
     }
   });
 
-  console.log(response);
   setLoader(false);
   
 }
+
 
 
 if (loader) {

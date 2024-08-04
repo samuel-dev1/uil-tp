@@ -4,6 +4,7 @@ import { fetchSchoolList } from '../../services/admin/schoollogic/schoollogic';
 
 export const SchoolList = ({ setAddSchool }) => {
   const [schools, setSchools] = useState([]);
+  const token = JSON.parse(localStorage.getItem("token"))
 
   const handleOnSearch = (string, results) => {
     console.log(string, results);
@@ -25,10 +26,24 @@ export const SchoolList = ({ setAddSchool }) => {
     const data = await fetchSchoolList();
     console.log(data);
     if (data) {
-      setSchools(data); // Adjust according to your actual data structure
+      setSchools(data); 
     }
   };
 
+  const Deketeschool = (id)=>{
+    try{
+const response = fetch(`https://uil-tp.com.ng/admin/admin-delete?id=${id}`,{
+  method:"POST",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization':`Bearer ${token}`
+  },
+})
+    }
+    catch(e){
+console.log(e)
+    }
+  }
   useEffect(() => {
     handlesCHli();
   }, []);
@@ -91,7 +106,7 @@ export const SchoolList = ({ setAddSchool }) => {
                   <td className="p-4">{tp_count}</td>
                   <td className="p-4 flex space-x-2">
                     <button className="py-1 px-2 text-sm bg-background1 text-black rounded" onClick={() => handleUpdate(id)}>Update</button>
-                    <button className="py-1 px-2 text-sm bg-red-700 text-white rounded" onClick={() => handleDelete(id)}>Delete</button>
+                    <button className="py-1 px-2 text-sm bg-red-700 text-white rounded" onClick={() => Deketeschool(id)}>Delete</button>
                   </td>
                 </tr>
               ))

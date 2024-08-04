@@ -13,10 +13,10 @@ const fetchData = async (url) => {
         'Authorization': `Bearer ${token}`,
       },
     });
-    return response.data; // Ensure this is the correct data structure
+    return response.data; 
   } catch (error) {
     console.error('Error fetching data:', error);
-    return { data: { count: 0 } }; // Default response in case of error
+    return { data: { count: 0 } }; 
   }
 };
 
@@ -65,6 +65,7 @@ export const AdminDashboard = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
+
     <>
     <div className="h-full w-full p-10">
       <div className="flex justify-end">
