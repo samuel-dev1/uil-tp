@@ -1,9 +1,11 @@
 import { useState } from "react"
-import { SchoolList, AddSchool } from "../../components"
+import { SchoolList, AddSchool, UpdateSchoolModal } from "../../components"
 
 export const SchoolManagement = ()=> {
     const [ addSchool, setAddSchool] = useState(false);
-    const [deletschool, setDeleteschool] = useState(false)
+    const [deletschool, setDeleteschool] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [selectedSchool, setSelectedSchool] = useState();
 
     if(addSchool){
        return(
@@ -21,7 +23,9 @@ export const SchoolManagement = ()=> {
     }
     return(
         <>
-         <SchoolList setAddSchool={setAddSchool} />
+         <SchoolList setAddSchool={setAddSchool} setSelectedSchool={setSelectedSchool} setModalShow={setModalShow} />
+         {modalShow  && 
+        <UpdateSchoolModal setModalShow={setModalShow} selectedSchool={selectedSchool} />}
         </>
     )
 }

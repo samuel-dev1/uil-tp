@@ -40,7 +40,7 @@ const data ={
       value={staff_id}
       onChange={handleChange}
         className="bg-background1 my-3 md:w-3/5 w-4/5 p-3 rounded-3xl italic"
-        placeholder="Matric No"
+        placeholder="User Id"
         type="text"
       />
       <input

@@ -33,11 +33,15 @@ async function getAstudent(search, setLoader) {
   }
 }
 
-export const PTViewStdProfile = ({ setTpOptions }) => {
+export const PTViewStdProfile = ({ setPTSelect }) => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState([]);
+
+  const handleBack = ()=> {
+    setPTSelect("neutral");
+  }
 
   const handleHoldsearch = (event) => {
     setSearch(event.target.value);
@@ -49,16 +53,13 @@ export const PTViewStdProfile = ({ setTpOptions }) => {
     setData(searchData);
   };
 
-  const handleBack = () => {
-    setTpOptions('neutral');
-  };
 
   if (loader) {
     return <WindowReloader />;
   }
 
   const Navigateto = (matric_no, type) => {
-    navigate(`/view`,{ state: { matric_no: matric_no, type:type}});
+    navigate(`view`,{ state: { matric_no: matric_no, type:type}});
   };
 
   return (

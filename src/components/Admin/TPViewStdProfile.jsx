@@ -58,7 +58,7 @@ export const TPViewStdProfile = ({ setTpOptions }) => {
   }
 
   const Navigateto = (matric_no, type) => {
-    navigate(`/view`,{ state: { matric_no: matric_no, type:type }});
+    navigate(`view`,{ state: { matric_no: matric_no, type:type }});
   };
 
   return (

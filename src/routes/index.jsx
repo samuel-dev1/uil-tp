@@ -22,9 +22,9 @@ import  {
   ScoreStudentsPage,
   AdminLoginPage,
   Supervisor,
+  ViewPage,
 } from "../pages";
 
-import { ViewPage } from "../components/Nav/ViewPage";
 
 export const routes = [
     {
@@ -32,12 +32,6 @@ export const routes = [
       component: <Login />,
       standalone: true,
     },
-    {
-      path: '/view',
-      component: <ViewPage />,
-      standalone: true,
-    },
-
     {
       path:"/adminLogin",
       component:<AdminLoginPage />,
@@ -167,6 +161,10 @@ export const routes = [
         {
           path: 'admin-upload',
           component: <AdminUploadPage />
+        },
+        {
+          path: 'student-management/view',
+          component: <ViewPage />
         },
       ]
     },
