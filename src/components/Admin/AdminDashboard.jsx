@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 // Function to fetch data
 const fetchData = async (url) => {
-  const token = JSON.parse(localStorage.getItem('token'));
+  const token = JSON?.parse(localStorage?.getItem('token'));
 
   try {
     const response = await axios.get(url, {
@@ -13,7 +13,7 @@ const fetchData = async (url) => {
         'Authorization': `Bearer ${token}`,
       },
     });
-    return response.data; 
+    return response?.data; 
   } catch (error) {
     console.error('Error fetching data:', error);
     return { data: { count: 0 } }; 
@@ -63,15 +63,13 @@ export const AdminDashboard = () => {
   };
 
   if (loading) return <div>Loading...</div>;
-
   return (
-
     <>
     <div className="h-full w-full p-10">
       <div className="flex justify-end">
         <div className="w-2/5 flex items-center justify-center">
           <p className="mr-4">Session</p>
-          <Select options={locationOptions} styles={customStyles} className="bg-background1" />
+          <Select options={locationOptions?locationOptions:null} styles={customStyles} className="bg-background1" />
         </div>
       </div>
 
@@ -87,7 +85,7 @@ export const AdminDashboard = () => {
           <h2 className="ml-2 mb-4 font-semibold">Peer Teaching</h2>
           <div className="bg-background1 h-32 rounded-lg p-4">
             <p className="mb-10">No of students</p>
-            <p>{noObstd || 0}</p>
+            <p>{noObstd|| 0}</p>
           </div>
         </div>
         <div>
