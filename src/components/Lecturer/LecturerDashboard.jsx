@@ -209,12 +209,14 @@ export const LecturerDashboard = () => {
       <h1 className="lg:text-xl text-lg mb-8">
         Students assigned to you will show here
       </h1>
-      <h1 className="text-2xl font-bold mb-4 text-background2">Teaching Practice</h1>
+      <h1 className="text-2xl font-bold mb-4 text-background2">Teaching Practice
+      </h1>
+      <h6 style={{color:"red"}}>All students are concatinated</h6>
       <div className="h-full w-full overflow-scroll mb-12">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
             <tr className="grid grid-cols-4 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
-              {['S/N', 'Name', 'Department', 'Phone No'].map(head => (
+              {[ 'Name', 'Department', 'School','matric number'].map(head => (
                 <th key={head} className="p-4 tracking-widest w-full">
                   <div className="font-medium tracking-widest whitespace-nowrap text-sm flex text-background2 font-semibold">
                     {head}
@@ -225,12 +227,12 @@ export const LecturerDashboard = () => {
           </thead>
           <tbody style={{ backgroundColor: "#f5f6fa" }}>
             {Tpstudent.length > 0 ? (
-              Tpstudent.map(({ id, firstname, lastname, number }) => (
+              Tpstudent.map(({ id, firstname, lastname, name, matric_no }) => (
                 <tr key={id} className="grid grid-cols-4 border-b border-blue-gray-50">
-                  <td className="p-4">{id}</td>
                   <td className="p-4">{firstname}</td>
                   <td className="p-4">{lastname}</td>
-                  <td className="p-4">{number}</td>
+                  <td className="p-4">{name}</td>
+                  <td className="p-4">{matric_no}</td>
                 </tr>
               ))
             ) : (
