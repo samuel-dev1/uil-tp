@@ -1,6 +1,7 @@
 import { Input } from "../Input";
 import { useEffect, useState } from "react";
 import { Button } from "../Button";
+import { WindowReloader } from '../WindowReloader'
 import axios from "axios"; // Import axios for HTTP requests
 
 export const ScoreStudents = () => {
@@ -8,7 +9,8 @@ export const ScoreStudents = () => {
  const [error, setError] = useState(null);
  const [Tpstudent, setTpstudent] = useState([]);
  const [scores, setScores] = useState([]);
- const [scoresOb, setObscore] = useState([])
+ const [scoresOb, setObscore] = useState([]);
+ const [loader, setLoader] = useState(false);
 
  const user = JSON.parse(localStorage.getItem("user"));
  const token = JSON.parse(localStorage.getItem("token"));
@@ -105,6 +107,8 @@ const handleScoreChangeOb = (ob_record_id, value) => {
 };
 
 const handleReset = async (id)=>{
+  setLoader(true);
+  location.reload();
   if (!user || !token) {
     setError('User or token is missing.');
     return;
@@ -132,6 +136,8 @@ catch(e){
 }
 
 const handleResetOb = async (id)=>{
+  setLoader(true);
+  location.reload();
   if (!user || !token) {
     setError('User or token is missing.');
     return;
@@ -158,6 +164,8 @@ catch(e){
 
 }
  const handleSave = async () => {
+  setLoader(true);
+  location.reload();
  if (!user || !token) {
  setError('User or token is missing.');
  return;
@@ -186,6 +194,8 @@ else{
  };
 
  const handleSave2 = async () => {
+  setLoader(true);
+  location.reload();
   if (!user || !token) {
   setError('User or token is missing.');
   return;
@@ -211,6 +221,13 @@ else{
   }
   };
  
+  if(loader){
+    return(
+      <>
+        <WindowReloader />
+      </>
+    )
+  }
  return (
  <div className="h-full w-full p-10">
  <h1 className="text-3xl text-background2 font-semibold mb-20">Score Students</h1>
@@ -218,8 +235,8 @@ else{
  <div className="h-full w-full overflow-scroll mb-12">
  <table className="w-full min-w-max table-auto text-left">
  <thead>
- <tr className="grid grid-cols-4 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
- {['First Name', 'Last Name', "Matric Number", 'Scores',"reset"].map(head => (
+ <tr className="grid grid-cols-5 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
+ {['First Name', 'Last Name', "Matric Number", 'Scores',"Action"].map(head => (
   <th key={head} className="p-4 tracking-widest w-full">
   <div className="font-medium tracking-widest whitespace-nowrap text-sm flex text-background2 font-semibold">
   {head}
@@ -231,7 +248,7 @@ else{
  <tbody style={{ backgroundColor: "#f5f6fa" }}>
  {Tpstudent.length > 0 ? (
  Tpstudent.map(({ id, firstname, lastname, matric_no, value, tp }) => (
-  <tr key={id} className="grid grid-cols-4 border-b border-blue-gray-50">
+  <tr key={id} className="grid grid-cols-5 border-b border-blue-gray-50">
   <td className="p-4">{firstname}</td>
   <td className="p-4">{lastname}</td>
   <td className="p-4">{matric_no}</td>
@@ -240,10 +257,12 @@ else{
   type="number"
   disabled={value?true:false}
   placeholder={value ? value : "Score"}
-  style={{ width: 70, padding: 10 }}
+  style={{ width: 70, padding: 5 }}
   onChange={(e) => handleScoreChange(tp, e.target.value)}
   />
-  <Button handleSubmit={()=>handleReset(tp)} label={"reset"} />
+  </td>
+  <td className="p-4">
+        <button className="text-white py-3 px-10 rounded-xl bg-background2" onClick={()=>handleReset(tp)}>Reset</button>
   </td>
   </tr>
  ))
@@ -268,8 +287,8 @@ else{
  <div className="h-full w-full overflow-scroll mb-12">
  <table className="w-full min-w-max table-auto text-left">
  <thead>
- <tr className="grid grid-cols-4 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
- {['First Name', 'Last Name', 'Matric Number', "Scores"].map(head => (
+ <tr className="grid grid-cols-5 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
+ {['First Name', 'Last Name', 'Matric Number', "Scores", "Action"].map(head => (
   <th key={head} className="p-4 tracking-widest w-full">
   <div className="font-medium tracking-widest whitespace-nowrap text-sm flex text-background2 font-semibold">
   {head}
@@ -281,7 +300,7 @@ else{
  <tbody style={{ backgroundColor: "#f5f6fa" }}>
  {students.length > 0 ? (
  students.map(({ id, firstname, lastname, matric_no, value, ob }) => (
-  <tr key={id} className="grid grid-cols-4 border-b border-blue-gray-50">
+  <tr key={id} className="grid grid-cols-5 border-b border-blue-gray-50">
   <td className="p-4">{firstname}</td>
   <td className="p-4">{lastname}</td>
   <td className="p-4">{matric_no}</td>
@@ -294,7 +313,9 @@ else{
   onChange={(e) =>handleScoreChangeOb(ob, e.target.value)}
   />
   </td>
-  <td className="p-4"><Button label={"reset"} handleSubmit={()=>handleResetOb(ob)} /></td>
+  <td className="p-4">
+      <button className="text-white py-3 px-10 rounded-xl bg-background2" onClick={()=>handleResetOb(ob)}>Reset</button>
+    </td>
  
   </tr>
  ))
