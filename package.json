@@ -19,6 +19,9 @@
     "@react-pdf-viewer/default-layout": "^3.12.0",
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
+    "html2canvas": "^1.4.1",
+    "js-html2pdf": "^1.1.4",
+    "jspdf": "^2.5.1",
     "pdf-lib": "^1.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -26,6 +29,7 @@
     "react-router-dom": "^6.22.3",
     "react-search-autocomplete": "^8.5.2",
     "react-select": "^5.8.0",
+    "react-to-print": "^2.15.1",
     "react-toastify": "^10.0.5"
   },
   "devDependencies": {

@@ -23,6 +23,7 @@ import  {
   AdminLoginPage,
   Supervisor,
   ViewPage,
+  FormalLetter,
 } from "../pages";
 
 
@@ -40,6 +41,11 @@ export const routes = [
     {
       path:"/supervisor",
       component:<Supervisor />,
+      standalone:true,
+    },
+    {
+      path:"/letter",
+      component:<FormalLetter />,
       standalone:true,
     },
     {
