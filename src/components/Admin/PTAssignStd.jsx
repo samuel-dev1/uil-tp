@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Input } from "../../components";
+import { Button, Input, BackButton } from "../../components";
 import { WindowReloader } from "../WindowReloader";
 
 async function assignOberstiongroup(groupsize, setLoader) {
@@ -31,9 +31,13 @@ async function assignOberstiongroup(groupsize, setLoader) {
     setLoader(false);
   }
 }
-export const PTAssignStd = () => {
+export const PTAssignStd = ({ setPTSelect }) => {
   const [number, changenumber] = useState(null);
   const [loader, setLoader] = useState(false);
+
+  const handleBack = ()=> {
+    setPTSelect("neutral");
+  }
 
   const handleChange = (event) => {
     changenumber(event.target.value);
@@ -54,6 +58,9 @@ export const PTAssignStd = () => {
   }
   return (
     <div className="h-full w-full px-10 py-5">
+      <div className="w-full mt-12 flex justify-end">
+        <BackButton handleBack={handleBack} />
+        </div>
       <h1 className="text-xl text-background2 font-semibold">
         Assign Students to Lecturers
       </h1>

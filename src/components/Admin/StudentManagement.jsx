@@ -20,7 +20,7 @@ export const StudentManagement = () => {
   } else if(studentSelectTP === false){
     return(
       <>
-      <PeerTeachingselect />
+      <PeerTeachingselect setStudentSelectTP={setStudentSelectTP} />
       </>
     )
   } else if(studentSelectTP === null){

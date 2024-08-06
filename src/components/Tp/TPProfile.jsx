@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Input, Button, Select } from '../../components'; 
+import { Input, Button } from '../../components'; 
 import { WindowReloader } from '../../components';
+import Select from "react-select";
 
 export const TPProfile = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -19,11 +20,14 @@ export const TPProfile = () => {
     { label: "Female", value: "female" }
   ];
 
+  const handleGenderChange = (selectedOption)=> {
+    setGender(selectedOption);
+  }
   const dataform = {
     matric_no: user?.matric_no,
     email: femail,
     phone_number: phone,
-    gender: gender,
+    gender: gender?.value,
     lastname: lname,
     firstname: fname,
     middlename: fmiddle,
@@ -83,6 +87,16 @@ export const TPProfile = () => {
     } catch (error) {
       console.error('Error occurred while fetching student details:', error);
     }
+  };
+
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      background: "#D9D9D9",
+      cursor: "pointer",
+      width: "100%",
+      height: "100%",
+    }),
   };
 
   useEffect(() => {
@@ -161,8 +175,9 @@ export const TPProfile = () => {
             <Select 
               options={GenderOptions} 
               value={gender} 
-              onChange={(selectedOption) => setGender(selectedOption.value)} 
-              className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" 
+              onChange={handleGenderChange}
+              styles={customStyles}
+              className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 text-black focus:outline-none focus:border-blue-500" 
             />
           </div>
         </div>
