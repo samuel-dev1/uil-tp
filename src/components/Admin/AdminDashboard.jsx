@@ -27,9 +27,9 @@ const locationOptions = [
 ];
 
 export const AdminDashboard = () => {
-  const [noObstd, setNoObstd] = useState(null);
-  const [noOftp, setNoOftp] = useState(null);
-  const [noLect, setNoLect] = useState(null);
+  const [noObstd, setNoObstd] = useState(null||0);
+  const [noOftp, setNoOftp] = useState(null||0);
+  const [noLect, setNoLect] = useState(null||0);
   const [loading, setLoading] = useState(true);
 
   const fetchObstd = async () => {
