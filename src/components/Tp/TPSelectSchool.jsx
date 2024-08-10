@@ -14,7 +14,6 @@ export const TPSelectSchool = () => {
   const [selectedLocationsch, setSelectedSchool] = useState(null)
   const [selectedLocation, setSelectedLocation] = useState(null);
 
-  // Fetch locations from API and format them for Select options
   const fetchLocations = async () => {
     try {
       const response = await fetch(`https://uil-tp.com.ng/stud/get-locations`, {
@@ -42,7 +41,7 @@ export const TPSelectSchool = () => {
     }
   };
 
-  // Load locations on component mount
+
   useEffect(() => {
     fetchLocations();
   }, []);
@@ -114,11 +113,11 @@ const response  =  await fetch(`https://uil-tp.com.ng/stud/choose-school?session
 })
 const data  = response.json()
 if(response.ok){
-  console.log(data)
+  alert(data.data)
   setLoader(false);
 }
 else{
-  console.log(data)
+  alert(data.data)
   setLoader(false);
 }
 }
@@ -141,8 +140,14 @@ if (loader) {
         <h1 className="text-3xl text-xl text-background2 font-semibold">Choose School For Teaching Practice</h1>
         <div className="mt-16">
         <div className="my-2 w-full">
+          <marquee>
+            <p style={{color:'red'}}>
+            Please confirm your record at your dashboard to avoid lost of record and result(follow the instructions carefully)
+            </p>
+          </marquee>
         <p className="mb-2">Select a Location</p>
           <Select
+          isDisabled={user?.subject?true:false}
            styles={{
             control: (baseStyles, state) => ({
               ...baseStyles,
@@ -174,14 +179,19 @@ if (loader) {
             <div className="my-2 w-full">
             <p className="mb-2">Input your Subject</p>
           <input
+          disabled={user?.subject?true:false}
           onChange={(e)=> setSubject(e.target.value)}
             value={subject}
+            placeholder={user?.subject}
             className="w-full bg-background1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
           />
           </div>
         </div>
-        <Button handleSubmit={SelectSchool} label="Submit" />
+        <Button 
+        off={user?.subject?true:false}
+        handleSubmit={SelectSchool} label={user?.subject?null:"submit"} />
       </div>
+  
     </>
   );
 };

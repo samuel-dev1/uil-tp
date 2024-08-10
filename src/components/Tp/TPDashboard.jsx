@@ -46,7 +46,12 @@ export const TPDashboard = () => {
     <>
       <div className="w-full py-10 px-12 h-auto">
         <h1 className="lg:text-4xl text-3xl text-background2 text-center lg:text-left font-semibold">Welcome Back</h1>
-        <marquee>You are to change your password at first login else your score will be reject or lost by the system GoodLuck!!</marquee>
+        <marquee>
+          <h1 style={{color:"red"}}>
+          You are to change your password at first login and update your profile else your score will be reject or lost, by the system GoodLuck!!
+          </h1>
+          
+          </marquee>
         <div className="mt-8 lg:w-4/5 w-full">
           <div className="flex flex-col justify-center items-center mb-16">
             <img src="https://i.imgur.com/3YzCjWm.png" className="mb-4" alt="User avatar" />
@@ -72,12 +77,8 @@ export const TPDashboard = () => {
              </div>
             </div>
           )}
-
-          {/* <div className="flex justify-between flex-col lg:flex-row mt-5 lg:mt-10">
-            <Button label="Print Posting Letter" />
-            <Button label="Change School" />
-          </div> */}
         </div>
+  
       </div>
     </>
   );

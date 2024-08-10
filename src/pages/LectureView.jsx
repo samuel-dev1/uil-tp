@@ -11,7 +11,6 @@ export const LectureView = () => {
   const token = JSON.parse(localStorage.getItem("token")); // Provide the correct key for token
 
   const id = location?.state?.id || location?.state?.supervisor_id;
- 
 
   const fetchStudentTp = async (id) => {
     if (!token) {
@@ -21,7 +20,6 @@ export const LectureView = () => {
     let url =""
    if(location?.state?.id) {
     url = `https://uil-tp.com.ng/lecture/get-students-by-school?school_id=${id}`
-     
    }
     else if(location?.state?.supervisor_id){
       url =`https://uil-tp.com.ng/lecture/students-under-supervisor?supervisor_id=${id}`
@@ -47,7 +45,6 @@ export const LectureView = () => {
       console.error(err);
     }
   };
-
   useEffect(() => {
     if (id) {
       fetchStudentTp(id);

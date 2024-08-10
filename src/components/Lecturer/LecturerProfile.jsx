@@ -31,9 +31,9 @@ export const LecturerProfile = () => {
       });
       const result = await response.json();
       if (response.ok) {
-        console.log(result);
+      alert(result?.message)
       } else {
-        console.log(result);
+        alert(result?.message)
       }
     } catch (error) {
       console.error('Error updating bank details:', error);

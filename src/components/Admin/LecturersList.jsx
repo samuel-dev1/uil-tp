@@ -42,6 +42,8 @@ export const LecturersList = ({ setTpOptions }) => {
   const [pageSize, setPageSize] = useState(10);
   const [totalResults, setTotalResults] = useState(0);
 
+
+
   const handleHoldsearch = (event) => {
     setSearch(event.target.value);
   };
@@ -97,6 +99,10 @@ export const LecturersList = ({ setTpOptions }) => {
                 <th style={{ border: '1px solid #ddd', padding: '8px' }}>Staff No</th>
                 <th style={{ border: '1px solid #ddd', padding: '8px' }}>Full Name</th>
                 <th style={{ border: '1px solid #ddd', padding: '8px' }}>Phone</th>
+                <td style={{ border: '1px solid #ddd', padding: '8px' }}>Account number </td>
+                <td style={{ border: '1px solid #ddd', padding: '8px' }}>Bank</td>
+                <td style={{ border: '1px solid #ddd', padding: '8px' }}>Account Name</td>
+                <td style={{ border: '1px solid #ddd', padding: '8px' }}>Department</td>
                 <th style={{ border: '1px solid #ddd', padding: '8px' }}>View</th>
               </tr>
             </thead>
@@ -106,11 +112,16 @@ export const LecturersList = ({ setTpOptions }) => {
                   <td style={{ border: '1px solid #ddd', padding: '8px' }}>{lecturer.id}</td>
                   <td style={{ border: '1px solid #ddd', padding: '8px' }}>{lecturer.staff_number}</td>
                   <td style={{ border: '1px solid #ddd', padding: '8px' }}>{lecturer.fullname}</td>
-                  <td style={{ border: '1px solid #ddd', padding: '8px' }}>{lecturer.phone}</td>
+                  <td style={{ border: '1px solid #ddd', padding: '8px' }}>{lecturer.phone_number}</td>
+                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{lecturer?.account_number}</td>
+                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{lecturer?.bankname }</td>
+                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{lecturer?.account_name}</td>
+              
+                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{lecturer?.department}</td>
                   <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                     <Button 
                       label={"view"}
-                      handleSubmit={() => Navigateto(lecturer?.staff_number, "staff")}
+                      handleSubmit={() => Navigateto(lecturer?.id, "staff")}
                     />
                   </td>
                 </tr>
@@ -125,7 +136,7 @@ export const LecturersList = ({ setTpOptions }) => {
             <span>Page {page}</span>
             <Button
               label="Next"
-              handleSubmit={() => handlePageChange(page < Math.ceil(totalResults / pageSize) ? page + 1 : page)}
+              handleSubmit={() => handlePageChange(page >= Math.ceil(totalResults / pageSize) ? page + 1 : page)}
             />
           </div>
         </div>

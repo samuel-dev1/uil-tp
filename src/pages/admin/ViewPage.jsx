@@ -7,7 +7,6 @@ export const ViewPage = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const token = JSON.parse(localStorage.getItem("token"));
   const location = useLocation();
   const matric_no = location?.state?.matric_no;
@@ -55,6 +54,7 @@ export const ViewPage = () => {
 
         const result = await response.json();
         setData(result);
+      
       } catch (e) {
         setError(e.message);
       } finally {
@@ -133,8 +133,7 @@ export const ViewPage = () => {
       </div>
 
      </div>
-      <Button label={"Delete"} />
-      <Button label={"Edit"} />
+      <Button handleSubmit={()=>alert("Student profile not yet activated, students should update his profile at his dashboard to activate his profile.")} label={"Edit"} />
     </div>
   );
 };

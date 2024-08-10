@@ -25,7 +25,6 @@ export const TPPostingLetter = () => {
 
       const data = await response.json();
       const student = data.data;
-      console.log('student',student);
       setData(student);
     } catch (error) {
       console.error('Error occurred while fetching student details:', error);
@@ -63,18 +62,20 @@ export const TPPostingLetter = () => {
       <div className="h-full w-full p-20">
     <h1 className="lg:text-3xl text-xl text-background2 font-semibold">Click the button below to download the</h1>
     <h1 className="lg:text-3xl text-xl text-background2 font-semibold">posting letter</h1>
-
+    <marquee><p style={{color:"red"}}>
+        Please follow the instructions and update all your profile and select schools,
+      </p></marquee>
 {data?.address !== null
 &&
 <>
 <div className="mt-20">
   <Button
+  off={data?.gender?false:true}
   handleSubmit={()=>navigate("/letter", { state: {data: data, data2:data2}})}
-  label="Download" />
+  label={data?.gender?"Download":"Profile missing"} />
 </div>
 </>
-}
-  </div>
+} </div>
     </>
   )
 }

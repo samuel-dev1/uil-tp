@@ -1,6 +1,26 @@
 import axios from 'axios';
 import Select from 'react-select';
 import { useEffect, useState } from 'react';
+import { Button } from '../Button';
+
+const handleTruncate = async () => {
+  const token = JSON?.parse(localStorage?.getItem('token'));
+  try {
+    // Send DELETE request to truncate the database
+    const response = await axios.delete('https://uil-tp.com.ng/admin/truncate-database',{
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    // Handle successful response
+    alert(response.data.message);
+  } catch (error) {
+    // Handle error response
+    console.log(error.response)
+    alert(`Error: ${error.response?.data?.message || error.message}`);
+  }
+};
 
 // Function to fetch data
 const fetchData = async (url) => {
@@ -25,6 +45,22 @@ const locationOptions = [
   { value: '2024/2025', label: '2024/2025' },
   { value: '2025/2026', label: '2025/2026' }
 ];
+
+
+const fetchScores = async()=>{
+
+  const token = JSON.parse(localStorage.getItem("token") || "null");
+const response = axios.get("https://uil-tp.com.ng/admin/student-scores",{
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+})
+
+const data = (await response).data
+console.log(data)
+}
+
 
 export const AdminDashboard = () => {
   const [noObstd, setNoObstd] = useState(null||0);
@@ -62,9 +98,6 @@ export const AdminDashboard = () => {
     }),
   };
 
-
-
-
   if (loading) return <div>Loading...</div>;
   return (
     <>
@@ -75,7 +108,6 @@ export const AdminDashboard = () => {
           <Select options={locationOptions?locationOptions:null} styles={customStyles} className="bg-background1" />
         </div>
       </div>
-
       <div className="w-full grid grid-cols-3 gap-4 mt-20">
         <div>
           <h2 className="ml-2 mb-4 font-semibold">Teaching Practice</h2>
@@ -99,6 +131,8 @@ export const AdminDashboard = () => {
           </div>
         </div>
       </div>
+      <Button handleSubmit={ handleTruncate} label={"cleared database"} />
+      <Button handleSubmit={fetchScores} label={"Download all scores"} />
     </div>
     </>
   );

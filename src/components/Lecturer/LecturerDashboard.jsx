@@ -7,6 +7,7 @@ export const LecturerDashboard = () => {
   const [lecture, setLecture] = useState([]);
   const [error, setError] = useState(null);
   const [Tpstudent, setTpstudent] = useState([])
+
   const user = JSON.parse(localStorage.getItem("user"));
   const token = JSON.parse(localStorage.getItem("token"));
   const navigate = useNavigate()
@@ -38,6 +39,8 @@ export const LecturerDashboard = () => {
     }
   };
 
+ 
+
   const fetchStudentOb = async () => {
     if (!user || !token) {
       setError('User or token is missing.');
@@ -65,10 +68,6 @@ export const LecturerDashboard = () => {
     }
   }
 
-
-
-
-
   useEffect(() => {
     fetchDetails();
   }, [lecture]);
@@ -76,14 +75,6 @@ export const LecturerDashboard = () => {
   useEffect(() => {
     fetchStudentOb();
   }, [students]);
-
-
-
-
-
-
-
-
 
   return (
     <div className="h-full w-full p-10">
@@ -114,13 +105,13 @@ export const LecturerDashboard = () => {
               </tr>
             </thead>
             <tbody style={{ backgroundColor: "#f5f6fa" }}>
-              {lecture.length > 0 ? (
-                lecture.map(({ id, school_name, address, supervisor_name }) => (
+              {lecture?.length > 0 ? (
+                lecture?.map(({ id, school_name, school_address, supervisor_name }) => (
                   <tr key={id} className="grid grid-cols-4 border-b border-blue-gray-50">
                     <td className="p-4">
                     </td>
                     <td className="p-4">{school_name}</td>
-                    <td className="p-4">{address}</td>
+                    <td className="p-4">{school_address}</td>
                     <td className="p-4">{supervisor_name}</td>
                     <td className="p-4">
         <button 
@@ -162,8 +153,8 @@ export const LecturerDashboard = () => {
             </tr>
           </thead>
           <tbody style={{ backgroundColor: "#f5f6fa" }}>
-            {students.length > 0 ? (
-              students.map(({ id, firstname, lastname, matric_no }) => (
+            {students?.length > 0 ? (
+              students?.map(({ id, firstname, lastname, matric_no }) => (
                 <tr key={id} className="grid grid-cols-4 border-b border-blue-gray-50">
 
                   <td className="p-4">{firstname}</td>

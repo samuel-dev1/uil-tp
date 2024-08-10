@@ -19,11 +19,8 @@ export const PTDashboard = () => {
         },
       });
       const result = await response.json();
-
-      // Update states based on the API response structure
       setStudents(result.data?.student_mates || []);
-      // Set an initial empty array for lecturers
-      setLecturers([]);
+      setLecturers([]); // Clear lecturers when students are fetched
     } catch (e) {
       setError('Failed to fetch data');
       console.log(e);
@@ -46,7 +43,6 @@ export const PTDashboard = () => {
         },
       });
       const result = await response.json();
-      // Update the lecturers state with supervisor data
       setLecturers(result.data?.supervisors || []);
     } catch (e) {
       setError('Failed to fetch data');
@@ -74,10 +70,14 @@ export const PTDashboard = () => {
           <img src="https://i.imgur.com/3YzCjWm.png" alt="avatar" className="mb-4" />
           <h1 className="text-colour1 text-3xl font-bold">{user?.firstname?.toUpperCase() + " " + user?.lastname}</h1>
         </div>
-<h6 style={{color:"red"}}>If you did not update your profile you will be authomatically remove from peers in two days.</h6>
+        <marquee>
+          <h6 style={{ color: "red" }}>
+            If you did not update your profile you will be automatically removed from peers in four (4) days.
+          </h6>
+        </marquee>
         <h1 className="text-2xl font-bold mb-12">
           Connect with your peer teaching partners and your assigned lecturers
-          </h1>
+        </h1>
       </div>
 
       <h1 className="text-2xl font-bold mb-4 text-background2">Peers</h1>
@@ -123,60 +123,39 @@ export const PTDashboard = () => {
 
       <h1 className="text-2xl font-bold mb-4 text-background2">Supervisors</h1>
       <div className="h-full w-full overflow-scroll">
-        <div className="mb-8">
-          {lecturers.length > 0 ? (
-            lecturers.map((supervisor, index) => {
-              const {
-                supervisor1_name,
-                supervisor1_department,
-                supervisor1_phone,
-                supervisor2_name,
-                supervisor2_department,
-                supervisor2_phone,
-              } = supervisor;
-
-              // Prepare data for each supervisor
-              const supervisors = [
-                {
-                  name: supervisor1_name,
-                  department: supervisor1_department,
-                  phone: supervisor1_phone,
-                },
-                {
-                  name: supervisor2_name,
-                  department: supervisor2_department,
-                  phone: supervisor2_phone,
-                }
-              ];
-
-              return (
-                <div key={index} className="mb-4">
-                  {supervisors.map((sup, i) => (
-                    <div key={i} className="mb-4">
-                      <h2 className="text-xl font-bold mb-2">
-                        {i === 0 ? 'First Supervisor' : i === 1 ? 'Second Supervisor' : `Supervisor ${i + 1}`}
-                      </h2>
-                      <table className="w-full min-w-max table-auto text-left">
-                        <tbody style={{ backgroundColor: "#f5f6fa" }}>
-                          <tr className="grid grid-cols-4 border-b border-blue-gray-50">
-                            <td className="p-4">{sup.name || 'N/A'}</td>
-                            <td className="p-4">{sup.department || 'N/A'}</td>
-                            <td className="p-4">{sup.phone || 'N/A'}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+        {lecturers.length > 0 ? (
+          <table className="w-full min-w-max table-auto text-left">
+            <thead>
+              <tr className="grid grid-cols-4 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
+                {['S/N', 'Name', 'Department', 'Phone No'].map(head => (
+                  <th key={head} className="p-4 tracking-widest w-full">
+                    <div className="font-medium tracking-widest whitespace-nowrap text-sm flex text-background2 font-semibold">
+                      {head}
                     </div>
-                  ))}
-                </div>
-              );
-            })
-          ) : (
-            <div className="flex flex-col items-center py-32 text-center">
-              <img src="https://i.imgur.com/VQEIj2b.png" alt="icon" />
-              <p className="capitalize text-black font-normal text-sm mt-4">Supervisors list is empty. Please check back.</p>
-            </div>
-          )}
-        </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody style={{ backgroundColor: "#f5f6fa" }}>
+              {lecturers.map((lecturer, index) => {
+                const { id, supervisor_name, supervisor_department, supervisor_phone } = lecturer;
+                return (
+                  <tr key={id} className="grid grid-cols-4 border-b border-blue-gray-50">
+                    <td className="p-4">{index + 1}</td>
+                    <td className="p-4">{supervisor_name || 'N/A'}</td>
+                    <td className="p-4">{supervisor_department || 'N/A'}</td>
+                    <td className="p-4">{supervisor_phone || 'N/A'}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <div className="flex flex-col items-center py-32 text-center">
+            <img src="https://i.imgur.com/VQEIj2b.png" alt="icon" />
+            <p className="capitalize text-black font-normal text-sm mt-4">Supervisors list is empty. Please check back.</p>
+          </div>
+        )}
       </div>
     </div>
   );

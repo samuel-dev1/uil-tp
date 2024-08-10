@@ -250,7 +250,6 @@ const Table = ({ data, handleScoreChange, handleReset, isTpStudent }) => (
     </tbody>
   </table>
 );
-
 // Reusable EmptyState component
 const EmptyState = ({ message }) => (
   <tr style={{ backgroundColor: '#f5f6fa' }} className="flex flex-col flex-1 justify-center py-32 text-center">

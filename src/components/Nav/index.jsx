@@ -1,8 +1,9 @@
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
-const user = JSON?.parse(localStorage?.getItem('user'));
 
 export const Nav = ({ setMobileMenuOpen }) => {
+  const user = JSON?.parse(localStorage?.getItem('user'));
+
   return (
     <div className="bg-background2 h-24 w-full flex px-8 items-center justify-between">
       <h1 className="text-white text-xl hidden lg:block">My Profile</h1>

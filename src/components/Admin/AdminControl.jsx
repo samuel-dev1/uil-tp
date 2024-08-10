@@ -17,7 +17,6 @@ export const AdminControl = ({ setTpOptions }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append('start_date', startDate);
     formData.append('end_date', endDate);
