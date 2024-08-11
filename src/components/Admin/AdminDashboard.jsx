@@ -2,6 +2,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import { useEffect, useState } from 'react';
 import { Button } from '../Button';
+import { useNavigate } from 'react-router-dom';
 
 const handleTruncate = async () => {
   const token = JSON?.parse(localStorage?.getItem('token'));
@@ -47,26 +48,13 @@ const locationOptions = [
 ];
 
 
-const fetchScores = async()=>{
-
-  const token = JSON.parse(localStorage.getItem("token") || "null");
-const response = axios.get("https://uil-tp.com.ng/admin/student-scores",{
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  },
-})
-
-const data = (await response).data
-console.log(data)
-}
-
-
 export const AdminDashboard = () => {
   const [noObstd, setNoObstd] = useState(null||0);
   const [noOftp, setNoOftp] = useState(null||0);
   const [noLect, setNoLect] = useState(null||0);
   const [loading, setLoading] = useState(true);
+
+const navigate = useNavigate()
 
   const fetchObstd = async () => {
     const data = await fetchData('https://uil-tp.com.ng/admin/get-studenst');
@@ -132,7 +120,7 @@ export const AdminDashboard = () => {
         </div>
       </div>
       <Button handleSubmit={ handleTruncate} label={"cleared database"} />
-      <Button handleSubmit={fetchScores} label={"Download all scores"} />
+      <Button handleSubmit={()=>navigate("/scores")} label={"Download all scores"} />
     </div>
     </>
   );

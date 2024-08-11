@@ -95,37 +95,41 @@ export const TPSelectSchool = () => {
     }
   }, [selectedLocation]);
 
-async function SelectSchool (){
-  const session = '2024/2025'
-  setLoader(true);
-try{
-const response  =  await fetch(`https://uil-tp.com.ng/stud/choose-school?session=${session}`,{
-  method:"POST",
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  },
-  body:JSON.stringify({
-    id:selectedLocationsch.value,
-    user_id:user?.id,
-    subject:subject
-  })
-})
-const data  = response.json()
-if(response.ok){
-  alert(data.data)
-  setLoader(false);
-}
-else{
-  alert(data.data)
-  setLoader(false);
-}
-}
-catch{
-
-}
-}
-
+  async function SelectSchool() {
+    const session = '2024/2025';
+    setLoader(true);
+  
+    try {
+      const response = await fetch(`https://uil-tp.com.ng/stud/choose-school?session=${session}`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          id: selectedLocationsch.value,
+          user_id: user?.id,
+          subject: subject
+        })
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        // Alert success message
+        alert(data.message);
+      } else {
+        // Alert error message
+        alert(`Error: ${data.message || 'An error occurred'}`);
+      }
+    } catch (error) {
+      // Alert a generic error message if an exception is thrown
+      alert('An unexpected error occurred.');
+    } finally {
+      setLoader(false); // Ensure loader is turned off whether success or error
+    }
+  }
+  
 
 if (loader) {
   return (
@@ -142,7 +146,7 @@ if (loader) {
         <div className="my-2 w-full">
           <marquee>
             <p style={{color:'red'}}>
-            Please confirm your record at your dashboard to avoid lost of record and result(follow the instructions carefully)
+            Please confirm your record at your dashboard to avoid lost of record and result(You can only pick once else contact your level adviser)
             </p>
           </marquee>
         <p className="mb-2">Select a Location</p>

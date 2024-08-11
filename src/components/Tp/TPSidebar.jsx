@@ -1,9 +1,18 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { RouterNames } from '../../enums/router';
 import { useState } from 'react';
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export const TPSidebar = ({ setMobileMenuOpen }) => {
+
+  const navigate = useNavigate(); // Hook must be used inside the functional component
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    navigate('/login'); // Redirect to login page
+    alert("logout succesfully")
+  };
   const [menu] = useState([
     {
       title: 'Dashboard',
@@ -31,7 +40,6 @@ export const TPSidebar = ({ setMobileMenuOpen }) => {
       link: RouterNames.TPPassword
     }
   ]);
-
   return (
     <div className="sidebar w-full">
       <div className="w-full flex items-center justify-center mt-10">
@@ -55,7 +63,7 @@ export const TPSidebar = ({ setMobileMenuOpen }) => {
       <div className="w-full flex items-center justify-center">
         <div className="w-full flex items-center justify-center">
           <img className="w-5 h-5 mx-2" src="https://i.imgur.com/jvxbmbB.png" alt="" />
-          <p className="text-background2">Log out</p>
+          <button className="text-background2" onClick={handleLogout}>Log out</button>
         </div>
       </div>
 

@@ -3,9 +3,10 @@ import { Button, BackButton } from '../../components'
 import { WindowReloader } from '../WindowReloader'
 
 
-const token  = JSON.parse(localStorage.getItem("token"))
-
 async function AsignsuperToSchol(setLoader){
+
+const token  = JSON?.parse(localStorage?.getItem("token"))
+
   const url ="https://uil-tp.com.ng/smart/assign-supervisors-to-all-schools";
   setLoader(true);
   try{

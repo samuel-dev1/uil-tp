@@ -15,7 +15,10 @@ export const AssignLtManually = ({ setLtSelect }) => {
   }
 
 
-  const token = JSON.parse(localStorage.getItem("token"));
+ 
+  const token = JSON?.parse(localStorage?.getItem("token"));
+  
+ 
   const customStyles = {
     control: (base, state) => ({
       ...base,

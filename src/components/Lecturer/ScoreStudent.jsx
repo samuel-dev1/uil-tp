@@ -16,6 +16,7 @@ export const ScoreStudents = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = JSON.parse(localStorage.getItem("token"));
 
+
   const fetchStudents = async (url, setter) => {
     if (!user || !token) {
       setError('User or token is missing.');
@@ -29,6 +30,7 @@ export const ScoreStudents = () => {
           "Authorization": `Bearer ${token}`,
         },
       });
+  
       if (!response.ok) throw new Error('Failed to fetch details.');
       const data = await response.json();
       setter(data.data || data);
@@ -39,8 +41,31 @@ export const ScoreStudents = () => {
   };
 
   useEffect(() => {
-    fetchStudents('students-under-supervisor', setStudents);
-    fetchStudents('students-under-tp', setTpStudents);
+    fetchStudents('score-under-supervisor', setStudents);
+  }, []);
+
+
+  const fetchStudentsTP = async (url, setter) => {
+    if (!user || !token) {
+      setError('User or token is missing.');
+      return;
+    }
+   
+      const response = await fetch(`${API_BASE_URL}/${url}?supervisor_id=${user?.id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+     console.log(data)
+      setter(data.data || data);
+    
+  };
+
+  useEffect(() => {
+    fetchStudentsTP('tp-score-under-supervisor', setTpStudents);
   }, []);
 
   console.log(tpStudents)
@@ -173,11 +198,10 @@ export const ScoreStudents = () => {
             isTpStudent
           />
         ) : (
-          <EmptyState message="Peers list is empty. Wait for admin decision." />
+          <EmptyState message="Peers list is empty. Wait for student decision." />
         )}
         <Button label="Save" handleSubmit={handleSave} />
       </Section>
-
       <Section title="Peers Teaching">
         {students.length > 0 ? (
           <Table
@@ -186,7 +210,7 @@ export const ScoreStudents = () => {
             handleReset={handleResetOb}
           />
         ) : (
-          <EmptyState message="Peers list is empty. Add a peer." />
+          <EmptyState message="Peers list is empty.wait for admin to Add a peer." />
         )}
         <Button label="Save" handleSubmit={handleSave2} />
       </Section>
@@ -212,7 +236,7 @@ const Table = ({ data, handleScoreChange, handleReset, isTpStudent }) => (
   <table className="w-full min-w-max table-auto text-left">
     <thead>
       <tr className="grid grid-cols-5 w-full" style={{ backgroundColor: "rgba(41, 23, 109, 0.1)" }}>
-        {['First Name', 'Last Name', 'Matric Number', 'Scores', "Action"].map(head => (
+        {['First Name', 'Last Name', 'Matric Number', 'Scores', "Action","school"].map(head => (
           <th key={head} className="p-4 tracking-widest w-full">
             <div className="font-medium tracking-widest whitespace-nowrap text-sm flex text-background2 font-semibold">
               {head}
@@ -222,7 +246,8 @@ const Table = ({ data, handleScoreChange, handleReset, isTpStudent }) => (
       </tr>
     </thead>
     <tbody style={{ backgroundColor: "#f5f6fa" }}>
-      {data.map(({ id, firstname, lastname, matric_no, value, tp, ob }) => (
+      {data.map(({ id, firstname, lastname, matric_no, total_score, tp, ob,school_name
+ }) => (
         <tr key={id} className="grid grid-cols-5 border-b border-blue-gray-50">
           <td className="p-4">{firstname}</td>
           <td className="p-4">{lastname}</td>
@@ -230,8 +255,8 @@ const Table = ({ data, handleScoreChange, handleReset, isTpStudent }) => (
           <td className="p-4">
             <input
               type="number"
-              disabled={value ? true : false}
-              placeholder={value || "Score"}
+              disabled={total_score ? true : false}
+              placeholder={total_score || "Score"}
               style={{ width: 70, padding: 5 }}
               onChange={(e) => handleScoreChange(isTpStudent ? tp : ob, e.target.value)}
             />
@@ -245,6 +270,7 @@ const Table = ({ data, handleScoreChange, handleReset, isTpStudent }) => (
               Reset
             </button>
           </td>
+          
         </tr>
       ))}
     </tbody>

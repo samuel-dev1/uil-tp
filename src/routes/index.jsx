@@ -28,12 +28,25 @@ import  {
   AdmiViewSchool
 } from "../pages";
 
+import { Allscores } from "../pages/admin/Allscores";
+import { SeeAllscores } from "../pages/admin/SeeAllscores";
+
 
 
 export const routes = [
     {
       path: '/login',
       component: <Login />,
+      standalone: true,
+    },
+    {
+      path: '/scores',
+      component: <Allscores />,
+      standalone: true,
+    },
+    {
+      path: '/see',
+      component: <SeeAllscores />,
       standalone: true,
     },
     {
@@ -93,6 +106,7 @@ export const routes = [
         },
       ]
     },
+    
     {
       path: '/',
       component: <PTLayout />,
