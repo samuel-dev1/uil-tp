@@ -15,7 +15,7 @@ return(
       please select a Result to view
    </div>
    <Button handleSubmit={()=>navigate("/see",{state:{"type":"ob"}})} label={"Observation"} />
-   <Button  label={"Teaching practice"} />
+   <Button handleSubmit={()=>navigate("/see",{state:{"type":"tp"}})} label={"Teaching practice"} />
    </>
 )
 

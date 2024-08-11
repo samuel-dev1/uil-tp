@@ -100,10 +100,12 @@ export const ScoreStudents = () => {
     });
   };
 
+
+
   const handleReset = async (id) => {
     setLoader(true);
     try {
-      await axios.delete(`${API_BASE_URL}/reset?tp_id=${id}`, {
+      await axios.delete(`${API_BASE_URL}/reset?tp_id=${id}&supervisor_id=${user?.id}`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
@@ -117,10 +119,11 @@ export const ScoreStudents = () => {
     }
   };
 
+
   const handleResetOb = async (id) => {
     setLoader(true);
     try {
-      await axios.delete(`${API_BASE_URL}/resetOb?ob_id=${id}`, {
+      await axios.delete(`${API_BASE_URL}/resetOb?ob_id=${id}&supervisor_id=${user?.id}`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
